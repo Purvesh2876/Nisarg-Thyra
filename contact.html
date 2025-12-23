@@ -12,98 +12,114 @@
 <body>
 
     <header>
-        <header>
-            <div class="nav-container">
-                <a href="index.html" class="logo">THYRA<span>.</span></a>
+        <div class="nav-container">
+            <a href="index.html" class="logo">THYRA<span>.</span></a>
 
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Products <i class="fas fa-angle-down"
-                                style="font-size:10px; margin-left:5px;"></i></a>
-                        <ul class="dropdown">
-                            <li><a href="#">Solar VFD (MS Series)</a></li>
-                            <li><a href="#">Automation AC Drive (CT Series)</a></li>
-                            <li><a href="#">Elevator Drives</a></li>
-                            <li><a href="#">PLC & HMI</a></li>
-                            <li><a href="#">RMS 4G Device</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
-                    <li class="nav-link active"><a href="contact.html" class="nav-link">Contact</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
-                </ul>
-
-                <a href="contact.html" class="btn-quote" style="margin-left: 20px;">Get a Quote</a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
             </div>
-        </header>
 
-        <div style="background:var(--primary); padding:60px 5%; text-align:center; color:white;">
-            <h1 style="font-size:2.5rem;">Contact Us</h1>
-            <p style="margin-top:10px; opacity:0.8;">Global Network, Local Support</p>
-        </div>
-
-        <div class="container section">
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:50px;">
-
-                <div>
-                    <h2 style="color:var(--primary); margin-bottom:20px;">Global Headquarters</h2>
-                    <div style="margin-bottom:20px;">
-                        <h4 style="color:var(--accent);">Address</h4>
-                        <p>No. 1000 Songjia Road, Wuzhong Economic and Technological Development Zone, Suzhou, China</p>
-                    </div>
-                    <div style="margin-bottom:20px;">
-                        <h4 style="color:var(--accent);">Overseas Sales</h4>
-                        <p>Email: overseas@thyradrives.com</p>
-                        <p>Phone: +86-138 288 18903</p>
-                    </div>
-                    <div style="margin-bottom:20px;">
-                        <h4 style="color:var(--accent);">Technical Support</h4>
-                        <p>Email: support@thyradrives.com</p>
-                    </div>
+            <ul class="nav-menu">
+                <div class="close-btn">
+                    <i class="fas fa-times"></i>
                 </div>
 
-                <div style="background:#f9f9f9; padding:30px; border-radius:5px; border-top:4px solid var(--accent);">
-                    <h3 style="margin-bottom:20px;">Send an Inquiry</h3>
-                    <form>
-                        <div style="margin-bottom:15px;">
-                            <input type="text" placeholder="Your Name"
-                                style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
-                        </div>
-                        <div style="margin-bottom:15px;">
-                            <input type="email" placeholder="Your Email"
-                                style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
-                        </div>
-                        <div style="margin-bottom:15px;">
-                            <select style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
-                                <option>Select Region</option>
-                                <option>Asia Pacific</option>
-                                <option>Europe</option>
-                                <option>Americas</option>
-                                <option>Middle East & Africa</option>
-                            </select>
-                        </div>
-                        <div style="margin-bottom:15px;">
-                            <textarea placeholder="Message / Product Requirement" rows="4"
-                                style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;"></textarea>
-                        </div>
-                        <button type="button" class="btn-quote" style="width:100%; border:none; cursor:pointer;">Submit
-                            Inquiry</button>
-                    </form>
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Products <i class="fas fa-angle-down"
+                            style="font-size:10px; margin-left:5px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#">MS10 Series Solar VFD</a></li>
+                        <li><a href="#">MS20 Series Solar VFD</a></li>
+                        <li><a href="#">Solar PCB Card (220V/415V)</a></li>
+
+                        <li><a href="#">CTE Economy AC Drive</a></li>
+                        <li><a href="#">CT10M Series AC Drive</a></li>
+                        <li><a href="#">CT30M Series AC Drive</a></li>
+
+                        <li><a href="#">CT30L Elevator Drive</a></li>
+
+                        <li><a href="#">PLC (Programmable Logic)</a></li>
+                        <li><a href="#">HMI (Human Machine Interface)</a></li>
+                        <li><a href="#">RMS 4G Device</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn-quote desktop-only" style="margin-left: 20px;">Get a Quote</a>
+        </div>
+    </header>
+
+    <div style="background:var(--primary); padding:60px 5%; text-align:center; color:white;">
+        <h1 style="font-size:2.5rem;">Contact Us</h1>
+        <p style="margin-top:10px; opacity:0.8;">Global Network, Local Support</p>
+    </div>
+
+    <div class="container section">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:50px;">
+
+            <div>
+                <h2 style="color:var(--primary); margin-bottom:20px;">Global Headquarters</h2>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent);">Address</h4>
+                    <p>No. 1000 Songjia Road, Wuzhong Economic and Technological Development Zone, Suzhou, China</p>
                 </div>
-
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent);">Overseas Sales</h4>
+                    <p>Email: overseas@thyradrives.com</p>
+                    <p>Phone: +86-138 288 18903</p>
+                </div>
+                <div style="margin-bottom:20px;">
+                    <h4 style="color:var(--accent);">Technical Support</h4>
+                    <p>Email: support@thyradrives.com</p>
+                </div>
             </div>
-        </div>
 
-        <div
-            style="height:400px; background:#eee; display:flex; align-items:center; justify-content:center; color:#888;">
-            <i class="fas fa-map-marked-alt" style="font-size:3rem; margin-right:15px;"></i>
-            <h2>Google Map Integration Area</h2>
-        </div>
+            <div style="background:#f9f9f9; padding:30px; border-radius:5px; border-top:4px solid var(--accent);">
+                <h3 style="margin-bottom:20px;">Send an Inquiry</h3>
+                <form>
+                    <div style="margin-bottom:15px;">
+                        <input type="text" placeholder="Your Name"
+                            style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <input type="email" placeholder="Your Email"
+                            style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <select style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
+                            <option>Select Region</option>
+                            <option>Asia Pacific</option>
+                            <option>Europe</option>
+                            <option>Americas</option>
+                            <option>Middle East & Africa</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom:15px;">
+                        <textarea placeholder="Message / Product Requirement" rows="4"
+                            style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;"></textarea>
+                    </div>
+                    <button type="button" class="btn-quote" style="width:100%; border:none; cursor:pointer;">Submit
+                        Inquiry</button>
+                </form>
+            </div>
 
-        <script src="script.js"></script>
+        </div>
+    </div>
+
+    <div style="height:400px; background:#eee; display:flex; align-items:center; justify-content:center; color:#888;">
+        <i class="fas fa-map-marked-alt" style="font-size:3rem; margin-right:15px;"></i>
+        <h2>Google Map Integration Area</h2>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
