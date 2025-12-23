@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Details - THYRA Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Page Specific Styles */
+        .detail-hero {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .detail-hero::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0, 34, 68, 0.75); /* Deep Thyra Blue Overlay */
+        }
+        .detail-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+        .detail-hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; }
+        .detail-hero p { font-size: 1.3rem; opacity: 0.95; font-weight: 300; }
+
+        .content-wrapper { display: flex; gap: 50px; padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+        .content-main { flex: 3; }
+        .content-sidebar { flex: 1; min-width: 280px; }
+
+        /* Sticky Sidebar Logic */
+        .sidebar-inner { position: sticky; top: 100px; }
+
+        .benefit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
+        .benefit-card { background: #fff; padding: 25px; border-top: 4px solid var(--accent); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-radius: 4px; }
+        .benefit-card h4 { color: var(--primary); margin-bottom: 10px; font-size: 1.1rem; }
+        .benefit-card p { font-size: 0.9rem; color: #666; }
+        
+        .app-list { list-style: none; margin: 20px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .app-list li { background: #f9f9f9; padding: 15px; border-radius: 4px; display: flex; align-items: center; }
+        .app-list li i { color: var(--accent); margin-right: 15px; font-size: 1.2rem; }
+
+        .sidebar-box { background: white; border: 1px solid #eee; border-radius: 8px; margin-bottom: 30px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .sidebar-header { background: #f4f4f4; padding: 15px 20px; font-weight: bold; color: var(--primary); border-bottom: 1px solid #ddd; }
+
+        @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+        @media (max-width: 900px) { .content-wrapper { flex-direction: column; } .app-list { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">THYRA<span>.</span></a>
+
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Products <i class="fas fa-angle-down"
+                            style="font-size:10px; margin-left:5px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="#">Solar VFD (MS Series)</a></li>
+                        <li><a href="#">Automation AC Drive (CT Series)</a></li>
+                        <li><a href="#">Elevator Drives</a></li>
+                        <li><a href="#">PLC & HMI</a></li>
+                        <li><a href="#">RMS 4G Device</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="solutions.html" class="nav-link active">Solutions</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn-quote" style="margin-left: 20px;">Get a Quote</a>
+        </div>
+    </header>
+
+    <div id="hero-section" class="detail-hero">
+        <div class="detail-hero-content">
+            <h1 id="page-title">Loading Solution...</h1>
+            <p id="page-subtitle">...</p>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content-main">
+            <h2 style="color:var(--primary); margin-bottom:20px; border-left: 5px solid var(--accent); padding-left: 15px;">Solution Overview</h2>
+            <div id="overview-content" style="font-size:1.05rem; line-height:1.8; color:#444; margin-bottom:40px;"></div>
+
+            <h2 style="color:var(--primary); margin-bottom:20px;">Key Technical Advantages</h2>
+            <div id="benefits-grid" class="benefit-grid"></div>
+
+            <h2 style="color:var(--primary); margin-bottom:20px;">Common Applications</h2>
+            <ul id="applications-list" class="app-list"></ul>
+        </div>
+
+        <div class="content-sidebar">
+            <div class="sidebar-inner">
+                <div class="sidebar-box">
+                    <div class="sidebar-header">All Solutions</div>
+                    <div class="sidebar-links" id="sidebar-links-container">
+                        <a href="solution-detail.html?type=solar" data-type="solar">Solar Pumping</a>
+                        <a href="solution-detail.html?type=compressor" data-type="compressor">Air Compressor</a>
+                        <a href="solution-detail.html?type=crane" data-type="crane">Crane & Hoist</a>
+                        <a href="solution-detail.html?type=machine-tools" data-type="machine-tools">Machine Tools</a>
+                        <a href="solution-detail.html?type=textile" data-type="textile">Textile Industry</a>
+                        <a href="solution-detail.html?type=packaging" data-type="packaging">Packaging</a>
+                        <a href="solution-detail.html?type=rubber" data-type="rubber">Rubber & Plastics</a>
+                        <a href="solution-detail.html?type=water" data-type="water">Water & Wastewater</a>
+                        <a href="solution-detail.html?type=mining" data-type="mining">Mining & Minerals</a>
+                        <a href="solution-detail.html?type=oil-gas" data-type="oil-gas">Oil & Gas</a>
+                        <a href="solution-detail.html?type=commercial" data-type="commercial">Commercial Buildings</a>
+                        <a href="solution-detail.html?type=marine" data-type="marine">Marine & Offshore</a>
+                        <a href="solution-detail.html?type=port" data-type="port">Port Machinery</a>
+                        <a href="solution-detail.html?type=residential" data-type="residential">Residential Energy</a>
+                        <a href="solution-detail.html?type=hydrogen" data-type="hydrogen">Hydrogen Energy</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-box" style="background:var(--primary); color:white; text-align:center; padding:30px; border:none;">
+                    <h3 style="color:white; border-bottom:1px solid rgba(255,255,255,0.2); padding-bottom:15px; margin-bottom:15px;">Need Assistance?</h3>
+                    <p style="margin-bottom:20px; font-size:0.9rem; opacity:0.9;">Our engineers can help you select the right drive for your application.</p>
+                    <a href="contact.html" class="btn-quote" style="display:inline-block; background:white; color:var(--primary); width:100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom" style="text-align: center; padding: 20px;">
+            <p>&copy; 2024 THYRA Drives & Control Systems. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. SEO OPTIMIZED CONTENT DATABASE (Based on Thyra Categories)
+        const solutionsData = {
+            'solar': {
+                title: "Solar Water Pumping Solutions",
+                subtitle: "High-Efficiency MPPT Drives for Agriculture & Irrigation",
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80",
+                overview: "THYRA Solar VFDs utilize advanced Maximum Power Point Tracking (MPPT) technology to ensure optimal water delivery even in fluctuating sunlight. Designed for remote Indian agricultural conditions, our drives operate off-grid, eliminating fuel costs and providing a sustainable alternative to diesel pumps. Our MS Series supports both AC and DC inputs for hybrid operation.",
+                benefits: [
+                    {title: "99% MPPT Efficiency", desc: "Maximizes solar array output for higher water flow."},
+                    {title: "Hybrid Capability", desc: "Seamlessly switches between Solar DC and Grid AC power."},
+                    {title: "Dry Run Protection", desc: "Intelligent sensors prevent pump damage when water is low."},
+                    {title: "Remote Monitoring (RMS)", desc: "Track pump performance via mobile app anywhere in India."}
+                ],
+                apps: ["Agricultural Irrigation", "Remote Village Water Supply", "Livestock Watering", "Desert Reclamation Projects"]
+            },
+            'compressor': {
+                title: "Air Compressor Automation",
+                subtitle: "Energy Saving Vector Control for Industrial Air Systems",
+                image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1920&q=80",
+                overview: "Compressed air is often the most expensive utility in a plant. THYRA's CT Series drives reduce energy consumption by up to 35% by strictly matching motor speed to air demand. Our PID control logic maintains constant pressure stability within ±0.1 bar, preventing the wear and tear associated with traditional load/unload cycles.",
+                benefits: [
+                    {title: "Stable Pressure Control", desc: "PID algorithms maintain constant system pressure automatically."},
+                    {title: "Energy Efficiency", desc: "Reduces motor speed during low demand periods to save power."},
+                    {title: "Soft Start Function", desc: "Eliminates high inrush currents, protecting electrical infrastructure."},
+                    {title: "Silent Operation", desc: "Lower motor RPMs result in significantly reduced noise pollution."}
+                ],
+                apps: ["Screw Compressors", "Centrifugal Compressors", "Pneumatic Tools Supply", "HVAC Chiller Compressors"]
+            },
+            'crane': {
+                title: "Crane & Hoist Solutions",
+                subtitle: "Precision Lifting with Anti-Sway Safety Technology",
+                image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80",
+                overview: "Material handling demands safety and precision. THYRA's specialized crane drives offer high starting torque at zero speed and integrated brake logic control. Our proprietary anti-sway algorithms ensure that loads remain stable during rapid horizontal movements, increasing operational safety in ports and construction sites.",
+                benefits: [
+                    {title: "Dedicated Brake Logic", desc: "Ensures motor torque is built before releasing the mechanical brake."},
+                    {title: "High Torque Low Speed", desc: "200% starting torque ensures heavy loads lift smoothly."},
+                    {title: "Anti-Sway Function", desc: "Automatically compensates to prevent dangerous load swinging."},
+                    {title: "Regenerative Braking", desc: "Captures energy during lowering to feed back into the grid."}
+                ],
+                apps: ["Tower Cranes", "Gantry Cranes", "Electric Hoists", "Port Container Handling"]
+            },
+            'machine-tools': {
+                title: "Machine Tool Control",
+                subtitle: "High-Speed Spindle & Servo Control for CNC Machines",
+                image: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?auto=format&fit=crop&w=1920&q=80",
+                overview: "In CNC machining, surface finish and cycle time are critical. THYRA high-performance vector drives provide rapid acceleration and deceleration response times. Our drives maintain stable RPM even under sudden cutting load changes, ensuring superior finishing quality for lathe and milling applications.",
+                benefits: [
+                    {title: "Rapid Response Time", desc: "Microsecond response to load changes for precision cutting."},
+                    {title: "Speed Stability", desc: "Maintains exact RPM to ensure uniform surface smoothness."},
+                    {title: "Wide Speed Range", desc: "Supports high-speed spindle operations up to 24,000 RPM."},
+                    {title: "Compact Design", desc: "Book-style footprint saves valuable cabinet space."}
+                ],
+                apps: ["CNC Spindles", "Lathe Machines", "Grinding Machinery", "Automated Drilling"]
+            },
+            'textile': {
+                title: "Textile Industry Drives",
+                subtitle: "Synchronized Control for Spinning & Weaving",
+                image: "https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?auto=format&fit=crop&w=1920&q=80",
+                overview: "The textile environment is harsh, with high heat and conductive lint (fluff). THYRA textile drives feature specialized independent duct cooling and conformal coated PCBs. Our 'Wobble Frequency' function is essential for yarn winding, preventing overlapping layers and ensuring high-quality spooling.",
+                benefits: [
+                    {title: "Wobble Frequency", desc: "Prevents pattern overlapping in yarn winding processes."},
+                    {title: "Heat Sink Design", desc: "Fluff-proof independent air ducts prevent clogging."},
+                    {title: "Tension Control", desc: "Maintains constant yarn tension to prevent breakage."},
+                    {title: "DC Bus Sharing", desc: "Connects multiple drives to share energy and reduce costs."}
+                ],
+                apps: ["Ring Spinning Frames", "Circular Looms", "Dyeing Machines", "Winding & Spooling"]
+            },
+            'packaging': {
+                title: "Packaging Automation",
+                subtitle: "Servo Synchronization for High-Speed Lines",
+                image: "https://images.unsplash.com/photo-1605557202138-0951e7fb003c?auto=format&fit=crop&w=1920&q=80",
+                overview: "Packaging lines require high-speed synchronization between multiple axes. THYRA Motion Controllers and Servo Systems provide electronic cam (E-Cam) functionality for rotary cutters, labeling, and filling stations, ensuring millimeter-level accuracy at high production speeds.",
+                benefits: [
+                    {title: "Electronic Cam (E-Cam)", desc: "Replaces mechanical cams for flexible motion profiles."},
+                    {title: "High Throughput", desc: "Increases cycles per minute for higher production volume."},
+                    {title: "Print Mark Correction", desc: "Sensors adjust cut position instantly for accurate labeling."},
+                    {title: "Vibration Suppression", desc: "Smooths motion profiles to protect delicate goods."}
+                ],
+                apps: ["Flow Wrapping", "Bottle Filling Lines", "Labeling Machines", "Carton Erectors"]
+            },
+            'rubber': {
+                title: "Rubber & Plastics",
+                subtitle: "Hydraulic Servo Solutions for Injection Molding",
+                image: "https://images.unsplash.com/photo-1623696144865-4f46cb61008e?auto=format&fit=crop&w=1920&q=80",
+                overview: "Traditional injection molding machines waste energy by running pumps constantly. THYRA's Hydraulic Servo System delivers pressure and flow only when required by the cycle. This results in energy savings of 30-70% and faster system response for precision molding.",
+                benefits: [
+                    {title: "70% Energy Saving", desc: "Motor stops or slows during cooling cycle, saving massive power."},
+                    {title: "Fast Pressure Buildup", desc: "30ms response time for rapid cycle production."},
+                    {title: "Low Oil Temperature", desc: "Reduced heat generation extends hydraulic oil life."},
+                    {title: "Precision Molding", desc: "Accurate pressure holding reduces product rejection rates."}
+                ],
+                apps: ["Injection Molding", "Plastic Extruders", "Blow Molding", "Rubber Mixing Mills"]
+            },
+            'water': {
+                title: "Water & Wastewater",
+                subtitle: "Intelligent Multi-Pump Cascading Control",
+                image: "https://images.unsplash.com/photo-1594911762299-65a88c2227d8?auto=format&fit=crop&w=1920&q=80",
+                overview: "THYRA water solutions focus on reliable supply and efficiency. Our drives feature built-in 'Pump Macro' software that manages multi-pump cascading systems. It automatically turns on auxiliary pumps during peak demand and puts them to sleep during low flow, ensuring constant pressure and pipe protection.",
+                benefits: [
+                    {title: "Multi-Pump Cascade", desc: "Controls up to 4 pumps without an external PLC."},
+                    {title: "Soft Fill Mode", desc: "Slowly fills empty pipes to prevent water hammer damage."},
+                    {title: "Sleep/Wake Function", desc: "Automatically saves energy during zero-demand periods."},
+                    {title: "Pump Alternation", desc: "Rotates pump usage to ensure even wear and tear."}
+                ],
+                apps: ["Water Treatment Plants", "Booster Stations", "Sewage Pumps", "Desalination Plants"]
+            },
+            'mining': {
+                title: "Mining & Minerals",
+                subtitle: "Heavy Duty Drives for Crushers & Conveyors",
+                image: "https://images.unsplash.com/photo-1579566346927-c68383817a25?auto=format&fit=crop&w=1920&q=80",
+                overview: "Mining environments are notoriously tough. THYRA drives are engineered with wide voltage tolerance and conformal coating to withstand dust and voltage fluctuations. Our heavy-duty vector control provides the massive starting torque needed to restart loaded crushers and long conveyor belts.",
+                benefits: [
+                    {title: "Robust Design", desc: "PCB coating protects against conductive mining dust."},
+                    {title: "High Overload Capacity", desc: "150% overload for 60s to handle jamming loads."},
+                    {title: "Master-Slave Control", desc: "Synchronizes multiple motors on long conveyor belts."},
+                    {title: "Grid Adaptability", desc: "Functions reliably even with unstable mining grid power."}
+                ],
+                apps: ["Jaw Crushers", "Long Conveyor Belts", "Ball Mills", "Slurry Pumps"]
+            },
+            'oil-gas': {
+                title: "Oil & Gas Solutions",
+                subtitle: "Safety & Reliability for Critical Extraction",
+                image: "https://images.unsplash.com/photo-1516937941348-c09e55483f5f?auto=format&fit=crop&w=1920&q=80",
+                overview: "In Oil & Gas, downtime is not an option. THYRA provides reliable drive solutions for beam pumps and electric submersible pumps (ESP). Our dedicated software optimizes the stroke rate of beam pumps to maximize oil recovery while minimizing energy usage and mechanical stress.",
+                benefits: [
+                    {title: "Beam Pump Logic", desc: "Optimizes up/down stroke speed for maximum extraction."},
+                    {title: "Power Ride-Through", desc: "Keeps system running during short grid voltage dips."},
+                    {title: "Harmonic Mitigation", desc: "Built-in reactors reduce electrical noise on the grid."},
+                    {title: "Remote SCADA", desc: "Full compatibility with industry-standard monitoring systems."}
+                ],
+                apps: ["Beam Pumping Units", "Electric Submersible Pumps", "Pipeline Compressors", "Refinery Fans"]
+            },
+            'commercial': {
+                title: "Commercial Buildings",
+                subtitle: "HVAC & Elevator Efficiency for Green Buildings",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80",
+                overview: "THYRA helps commercial complexes achieve LEED certification through energy-efficient control of HVAC and vertical transport. Our drives reduce fan noise, improve elevator ride comfort, and significantly cut electricity bills for malls, hotels, and office towers.",
+                benefits: [
+                    {title: "HVAC Optimization", desc: "Reduces fan speed based on building occupancy and temperature."},
+                    {title: "Fire Override Mode", desc: "Forces fans to run during fire emergencies for smoke extraction."},
+                    {title: "Smooth Elevator Ride", desc: "S-Curve acceleration eliminates jerks for passenger comfort."},
+                    {title: "Silent Operation", desc: "High carrier frequency reduces audible motor noise."}
+                ],
+                apps: ["Chiller Pumps", "Ventilation Fans", "Passenger Elevators", "Escalators"]
+            },
+            'marine': {
+                title: "Marine & Offshore",
+                subtitle: "Certified Drives for Propulsion & Winches",
+                image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6f?auto=format&fit=crop&w=1920&q=80",
+                overview: "Marine applications face corrosion, vibration, and limited space. THYRA marine-grade drives are compact and treated for salt-mist resistance. They provide precise control for bow thrusters, main propulsion, and deck winches, ensuring reliable operation at sea.",
+                benefits: [
+                    {title: "Marine Certification", desc: "Designed to meet DNV-GL and CCS marine standards."},
+                    {title: "Salt-Mist Protection", desc: "PCBs and terminals treated to resist corrosion."},
+                    {title: "Compact Footprint", desc: "Ideal for tight spaces in ship engine rooms."},
+                    {title: "Winch Tensioning", desc: "Maintain constant tension for mooring and anchor winches."}
+                ],
+                apps: ["Main Propulsion", "Bow Thrusters", "Deck Winches", "Marine Pumps"]
+            },
+            'port': {
+                title: "Port Machinery",
+                subtitle: "Electrification for Green Logistics",
+                image: "https://images.unsplash.com/photo-1494412574643-35d3d4018508?auto=format&fit=crop&w=1920&q=80",
+                overview: "Ports are transitioning from diesel to electric to reduce emissions. THYRA provides electrification solutions for Rubber Tyred Gantry (RTG) cranes. By replacing diesel generators with grid power and battery hybrids, we reduce fuel consumption and maintenance costs.",
+                benefits: [
+                    {title: "Diesel-to-Electric", desc: "Retrofit solutions to convert diesel cranes to electric."},
+                    {title: "Energy Recovery", desc: "Regenerates power when lowering containers."},
+                    {title: "Anti-Corrosion", desc: "Outdoor cabinets designed for coastal salt-air environments."},
+                    {title: "High Reliability", desc: "Proven performance in 24/7 logistics operations."}
+                ],
+                apps: ["RTG Cranes", "Ship-to-Shore Cranes", "Automated Guided Vehicles (AGV)", "Port Conveyors"]
+            },
+            'residential': {
+                title: "Residential Energy",
+                subtitle: "Hybrid Inverters for Smart Homes",
+                image: "https://images.unsplash.com/photo-1592833159057-65a2845730ce?auto=format&fit=crop&w=1920&q=80",
+                overview: "THYRA brings industrial reliability to the home with our Residential Hybrid Inverters. These smart systems manage power flow between rooftop solar, battery storage, and the grid. They ensure 24/7 power backup during outages and minimize electricity bills by using stored solar energy at night.",
+                benefits: [
+                    {title: "Uninterrupted Power", desc: "Seamless switchover (<10ms) ensures lights never go out."},
+                    {title: "Smart App Control", desc: "Monitor generation and consumption via mobile app."},
+                    {title: "Battery Management", desc: "Compatible with Lead-Acid and Lithium-Ion batteries."},
+                    {title: "Net Metering Ready", desc: "Feed excess solar power back to the grid for credits."}
+                ],
+                apps: ["Rooftop Solar", "Home Battery Backup", "EV Charging Integration", "Smart Home Energy"]
+            },
+            'hydrogen': {
+                title: "Hydrogen Energy",
+                subtitle: "DC Power Supply for Green Hydrogen Production",
+                image: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?auto=format&fit=crop&w=1920&q=80",
+                overview: "As the world moves towards clean fuel, THYRA offers high-efficiency DC Power Supplies for Hydrogen Electrolyzers. Our rectifiers convert grid AC power into the stable High-Current DC required for electrolysis, supporting the global transition to Green Hydrogen.",
+                benefits: [
+                    {title: "High Efficiency", desc: "Minimizes energy loss during AC-to-DC conversion."},
+                    {title: "Stable Current", desc: "Precise DC output ensures stable hydrogen production."},
+                    {title: "Grid Harmonics", desc: "Low harmonic distortion protects the utility grid."},
+                    {title: "Scalable Design", desc: "Modular architecture allows capacity expansion."}
+                ],
+                apps: ["Hydrogen Electrolyzers", "Fuel Cell Testing", "Green Hydrogen Plants", "Industrial DC Power"]
+            }
+        };
+
+        // 3. LOGIC: LOAD CONTENT & HIGHLIGHT SIDEBAR
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'compressor'; // Default fallback
+
+            // 3a. Highlight Active Link
+            const links = document.querySelectorAll('.sidebar-links a');
+            links.forEach(link => {
+                // Check if this link's data-type matches the current URL param
+                if(link.getAttribute('data-type') === type) {
+                    link.classList.add('active');
+                    // Scroll sidebar to keep active link in view if needed
+                    link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+
+            // 3b. Load Data
+            const data = solutionsData[type];
+            if(data) {
+                // Fade effect reset
+                const heroContent = document.querySelector('.detail-hero-content');
+                heroContent.style.animation = 'none';
+                heroContent.offsetHeight; /* trigger reflow */
+                heroContent.style.animation = 'fadeIn 1s ease';
+
+                document.getElementById('page-title').innerText = data.title;
+                document.getElementById('page-subtitle').innerText = data.subtitle;
+                document.getElementById('overview-content').innerHTML = data.overview; // Using innerHTML for bold tags if any
+                document.title = `${data.title} - THYRA Solutions`;
+                
+                // Set Hero Background
+                document.getElementById('hero-section').style.backgroundImage = `url('${data.image}')`;
+
+                // Populate Benefits
+                const benefitsContainer = document.getElementById('benefits-grid');
+                benefitsContainer.innerHTML = data.benefits.map(b => `
+                    <div class="benefit-card">
+                        <h4><i class="fas fa-check" style="color:var(--accent); font-size:0.8rem; margin-right:5px;"></i> ${b.title}</h4>
+                        <p>${b.desc}</p>
+                    </div>
+                `).join('');
+
+                // Populate Applications
+                const appContainer = document.getElementById('applications-list');
+                appContainer.innerHTML = data.apps.map(app => `
+                    <li><i class="fas fa-arrow-circle-right"></i> <span>${app}</span></li>
+                `).join('');
+            } else {
+                document.getElementById('page-title').innerText = "Solution Not Found";
+                document.getElementById('overview-content').innerText = "Please select a valid solution from the menu.";
+            }
+        });
+    </script>
+</body>
+</html>

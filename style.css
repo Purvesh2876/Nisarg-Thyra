@@ -279,3 +279,32 @@ footer { background: #111; color: #aaa; font-size: 14px; }
     .nav-menu { display: none; }
     .about-wrapper { flex-direction: column; }
 }
+
+/*  */
+/*  */
+/*  */
+/*  */
+/* solution detail page */
+/* Sidebar Active State Highlight */
+.sidebar-links a {
+    display: block;
+    padding: 12px 15px;
+    color: #555;
+    border-left: 3px solid transparent; /* Invisible border by default */
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.sidebar-links a:hover {
+    background: #f4f4f4;
+    color: var(--primary);
+}
+
+/* The Active Class */
+.sidebar-links a.active {
+    background: #fff3e0; /* Light orange background */
+    color: var(--accent);
+    font-weight: 700;
+    border-left: 3px solid var(--accent); /* Orange highlight bar */
+    padding-left: 20px;
+}
