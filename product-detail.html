@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - THYRA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Product Page Specific Styles */
+        .page-header {
+            background: #f4f4f4;
+            padding: 40px 5%;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .product-container {
+            display: flex;
+            gap: 50px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* Sidebar Styles */
+        .prod-sidebar {
+            flex: 1;
+            min-width: 280px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-menu {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar-header {
+            background: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .cat-btn {
+            width: 100%;
+            background: #f9f9f9;
+            color: var(--primary);
+            padding: 15px 20px;
+            text-align: left;
+            border: none;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .cat-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .cat-btn.active i {
+            transform: rotate(180deg);
+        }
+
+        .sub-menu {
+            display: none;
+            background: white;
+            list-style: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sub-menu.open {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        .sub-menu a {
+            display: block;
+            padding: 12px 20px 12px 35px;
+            color: #666;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f9f9f9;
+            transition: 0.2s;
+        }
+
+        .sub-menu a:hover {
+            color: var(--accent);
+            background: #fffbf5;
+        }
+
+        .sub-menu a.current {
+            color: var(--accent);
+            font-weight: 700;
+            background: #fff3e0;
+            border-left: 4px solid var(--accent);
+            padding-left: 31px;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main Content */
+        .prod-main {
+            flex: 3;
+        }
+
+        .prod-header-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            align-items: start;
+        }
+
+        .prod-image-box {
+            flex: 1;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 230px;
+        }
+
+        .prod-image-box img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .prod-summary {
+            flex: 1.5;
+        }
+
+        .prod-summary h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .prod-summary .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .prod-summary p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* New Documentation Buttons */
+        .doc-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .doc-btn i {
+            margin-right: 8px;
+        }
+
+        .btn-catalogue {
+            background-color: #eef2f5;
+            color: var(--primary);
+            border-color: #ddd;
+        }
+
+        .btn-catalogue:hover {
+            background-color: #e2e6ea;
+            border-color: #ccc;
+        }
+
+        .btn-manual {
+            background-color: #fff3e0;
+            color: var(--accent);
+            border-color: #ffe0b2;
+        }
+
+        .btn-manual:hover {
+            background-color: #ffe0b2;
+        }
+
+        /* Tabs */
+        .details-tabs {
+            margin-top: 40px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            padding: 15px 25px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            border: 1px solid #eee;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: #f9f9f9;
+            color: var(--primary);
+            width: 35%;
+            font-weight: 600;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: start;
+        }
+
+        .feature-list li i {
+            color: var(--accent);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .product-container {
+                flex-direction: column;
+            }
+
+            .prod-header-section {
+                flex-direction: column;
+            }
+
+            .prod-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">THYRA<span>.</span></a>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+            <ul class="nav-menu">
+                <div class="close-btn"><i class="fas fa-times"></i></div>
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Products <i class="fas fa-angle-down"
+                            style="font-size:10px; margin-left:5px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="product-detail.html?id=ms10">MS10 Series Solar VFD</a></li>
+                        <li><a href="product-detail.html?id=ms20">MS20 Series Solar VFD</a></li>
+                        <li><a href="product-detail.html?id=pcb">Solar PCB Card</a></li>
+                        <li><a href="product-detail.html?id=cte">CTE Economy Model</a></li>
+                        <li><a href="product-detail.html?id=ct10m">CT10M General Drive</a></li>
+                        <li><a href="product-detail.html?id=ct30m">CT30M Heavy Duty</a></li>
+                        <li><a href="product-detail.html?id=elevator">CT30L Elevator Drive</a></li>
+                        <li><a href="product-detail.html?id=plc">PLC (Programmable Logic)</a></li>
+                        <li><a href="product-detail.html?id=hmi">HMI (Touch Screen)</a></li>
+                        <li><a href="product-detail.html?id=rms">RMS 4G Device</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+            <a href="contact.html" class="btn-quote desktop-only">Get a Quote</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a> / Products / <span id="bread-name">Loading...</span>
+            </div>
+            <h1 id="header-title" style="color:var(--primary);">Product Details</h1>
+        </div>
+    </div>
+
+    <div class="product-container">
+        <aside class="prod-sidebar">
+            <div class="sidebar-menu">
+                <div class="sidebar-header">Product Catalog</div>
+                <div id="sidebar-accordion"></div>
+            </div>
+            <div
+                style="background:var(--primary); color:white; padding:30px; border-radius:8px; margin-top:30px; text-align:center;">
+                <h4 style="color:white; margin-bottom:15px;">Need Assistance?</h4>
+                <p style="font-size:0.9rem; opacity:0.8; margin-bottom:20px;">Contact our support team for help.</p>
+                <a href="contact.html" class="btn-quote"
+                    style="background:white; color:var(--primary); width:100%; display:block;">Contact Support</a>
+            </div>
+        </aside>
+
+        <main class="prod-main">
+            <div class="prod-header-section">
+                <div class="prod-image-box">
+                    <img id="main-img" src="" alt="Product Image">
+                </div>
+                <div class="prod-summary">
+                    <span id="prod-cat" class="tag">Category</span>
+                    <h1 id="prod-title">Product Name</h1>
+                    <p id="prod-desc">Description loading...</p>
+                    <a href="contact.html" class="btn-quote">Enquire Now</a>
+                </div>
+            </div>
+
+            <div id="doc-section" class="doc-buttons" style="display:none;">
+                <a id="btn-catalogue" href="#" target="_blank" class="doc-btn btn-catalogue">
+                    <i class="fas fa-file-pdf"></i> Download Catalogue
+                </a>
+                <a id="btn-manual" href="#" target="_blank" class="doc-btn btn-manual">
+                    <i class="fas fa-book"></i> Download Manual
+                </a>
+            </div>
+
+            <div class="details-tabs">
+                <div class="tab-buttons">
+                    <div class="tab-btn active">Key Features</div>
+                    <div class="tab-btn">Technical Specifications</div>
+                </div>
+                <div id="features-content">
+                    <ul id="feat-list" class="feature-list" style="list-style:none;"></ul>
+                </div>
+                <div id="specs-content" style="display:none;">
+                    <table class="spec-table">
+                        <tbody id="spec-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2024 THYRA Drives & Control Systems.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // --- PRODUCT DATABASE ---
+        const productsDB = {
+            'ms10': {
+                name: "MS10 Series Solar VFD",
+                category: "Solar Solutions",
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=80",
+                desc: "The THYRA MS10 Series is a high-efficiency Solar VFD designed to make full use of solar energy for agricultural irrigation, water supply, and fountains. Featuring the best MPPT algorithm with >99.5% efficiency, it supports automatic sleep/wake functions based on sunlight intensity and works with AM, PMSM, and BLDC motors.",
+                features: [
+                    "Best MPPT Algorithm (Efficiency > 99.5%)",
+                    "Supports AM / PMSM / BLDC Motors",
+                    "Auto Sleep (Weak Sun) & Auto Wake (Sun Resumes)",
+                    "Varied Liquid Level Control (Tank Full / Dry Run)",
+                    "Dual Supply: Solar DC & Grid AC Compatible",
+                    "Remote Monitoring via GPRS (RMS) Support"
+                ],
+                specs: {
+                    "2T Series Input": "60V - 450V DC (Best: 360V)",
+                    "4T Series Input": "230V - 800V DC (Best: 600V-750V)",
+                    "Output Voltage": "3-Phase 220V / 380V / 415V",
+                    "Power Range": "0.75kW to 45kW",
+                    "Protection": "Over Current, Over Voltage, Short Circuit, Phase Loss",
+                    "Cooling": "Independent Air Duct Design"
+                }
+            },
+            'ms20': {
+                name: "MS20 Series Solar VFD",
+                category: "Solar Solutions",
+                image: "./assets/images/ms20thumbnail.png",
+                desc: "MS20 SERIES Drives have excellent drive and control performance. It features advanced Synchronous and PMSM Driving Technology, utilizing the BEST Sensorless vector control technology.",
+                features: [
+                    "MS20 SERIES Drives have excellent drive and control performance",
+                    "Advanced Synchronous and PMSM Driving Technology",
+                    "BEST Sensorless vector control technology",
+                    "Very good Usability and Reliability for the enriched hardware configurations and software functions",
+                    "Wide-range and High-Efficiency MPPT Technology"
+                ],
+                specs: { "Input": "DC 250V-900V", "Power": "2.2kW-110kW" }
+            },
+            'pcb': {
+                name: "Solar VFD PCB Card",
+                category: "Solar Solutions",
+                image: "./assets/images/solarpcbthumbnail.webp",
+                desc: "OEM Solar Drive Control Board designed for 220V and 415V systems. Perfect for system integrators building custom solar pump panels.",
+                features: [
+                    "Support Grid & Solar Both inputs",
+                    "Drive a variety of permanent magnet synchronous, asynchronous, BLDC motors",
+                    "MPPT Maximum power output + multiple protection functions",
+                    "Multiple voltage options AC110V/220V/415V"
+                ],
+                specs: { "Type": "OEM PCB", "Voltage": "220V/415V" }
+            },
+            'cte': { 
+                name: "CTE Economy Model", 
+                category: "Automation VFD", 
+                image: "./assets/images/ctethumbnail.jpg", 
+                desc: "CTE economical VFD drives are designed for common applications of the small power OEM market. They feature PID, multistage speed, DC braking, and Modbus communication. Based on industrial requirements for high stability, small size, and easy debugging, THYRA has developed this new generation of compact inverters.", 
+                features: [
+                    "SVPWM Control (Space Vector Pulse Width Modulation)",
+                    "Compact design, saving installation space",
+                    "Built-in PID with 16-step speed control",
+                    "Standard potentiometer and external LED keypad",
+                    "Fan cooling (available for single-phase & three-phase)",
+                    "Built-in Brake Unit for all models"
+                ], 
+                specs: { 
+                    // --- General ---
+                    "Applications": "Textile, Packaging, Printing, Food, Woodworking, Pump fans, Ceramic machinery",
+                    
+                    // --- Terminal Functions (From Image) ---
+                    "Power Supply (+10V-GND)": "External +10V (for Potentiometer 1kΩ~50kΩ)",
+                    "Analog Input (AI1-GND)": "0~10V / 4~20mA (Impedance 100kΩ)",
+                    "Digital Input (Xi-GND)": "5 Inputs (Optical coupling isolation, 9~30V)",
+                    "Digital Output (Y-GND)": "Open Collector (0~24V, 0~50mA)",
+                    "Relay Output (RA-RB-RC)": "NO/NC Contacts (AC250V/3A, DC30V/3A)",
+
+                    // --- 220V Single Phase Models (Input / Output Current) ---
+                    "Model CTE-2S-0.4B": "In: 5.4A | Out: 2.8A | Motor: 0.4kW",
+                    "Model CTE-2S-0.75B": "In: 8.2A | Out: 4.8A | Motor: 0.75kW",
+                    "Model CTE-2S-1.5B": "In: 14.0A | Out: 8.0A | Motor: 1.5kW",
+                    "Model CTE-2S-2.2B": "In: 23.0A | Out: 10.0A | Motor: 2.2kW",
+                    "Model CTE-2S-4.0B": "In: 29.0A | Out: 17.0A | Motor: 4.0kW",
+
+                    // --- 415V Three Phase Models (Input / Output Current) ---
+                    "Model CTE-4T-0.75B": "In: 5.3A | Out: 2.5A | Motor: 0.75kW",
+                    "Model CTE-4T-1.5B": "In: 7.1A | Out: 4.2A | Motor: 1.5kW",
+                    "Model CTE-4T-2.2B": "In: 9.0A | Out: 5.6A | Motor: 2.2kW",
+                    "Model CTE-4T-4.0B": "In: 15.0A | Out: 9.4A | Motor: 4.0kW",
+                    "Model CTE-4T-5.5B": "In: 22.0A | Out: 13.0A | Motor: 5.5kW"
+                } 
+            },
+            'ct10m': {
+                name: "CT10M General Drive",
+                category: "Automation VFD",
+                image: "./assets/images/ct10m.png",
+                desc: "THYRA CT10M Series is a new high-performance and high-power density design inverter. With low-frequency output characteristics, the CT10M Series has better peak power capacity. This single-phase vector control VFD ranges from 220v 0.75kw to 2.2kw, and the three-phase vector control inverter ranges from 380v 0.75kw to 400kw.",
+                features: [
+                    "VF and Sensor less Vector Control",
+                    "Up to 0.5Hz/150% starting torque",
+                    "Built-in braking unit (≤30kW), Optional external braking unit (≥37kW)",
+                    "Auto Tunning Function for better motor drive",
+                    "Input and output delay",
+                    "PID Function",
+                    "Flexible parameter display",
+                    "AVR (Automatic voltage regulation)",
+                    "Simple PLC, 16-Step Speed Control",
+                    "Torque control build-in",
+                    "S curve acceleration/deceleration",
+                    "Multifunction Programmable"
+                ],
+                specs: {
+                    "Single Phase": "220V 0.75kw to 2.2kw",
+                    "Three Phase": "380V 0.75kw to 400kw",
+                    "Starting Torque": "Up to 0.5Hz/150%",
+                    "Applications": "Injection molding, Fan/Pump, Air Compressor, Lifting machinery"
+                }
+            },
+
+            'ct30m': {
+                name: "CT30M Heavy Duty",
+                category: "Automation VFD",
+                image: "./assets/images/ct30m.png",
+                desc: "THYRA CT30M Series is a new high-performance and high-power density design inverter. With low-frequency output characteristics, the CT30M Series has better peak power capacity. This single-phase vector control VFD ranges from 220v 0.75kw to 2.2kw, and the three-phase vector control inverter ranges from 380v 0.75kw to 400kw.",
+                features: [
+                    "VF and Sensor less Vector Control",
+                    "Up to 0.5Hz/150% starting torque",
+                    "Built-in braking unit (≤30kW), Optional external braking unit (≥37kW)",
+                    "Auto Tunning Function for better motor drive",
+                    "Input and output delay",
+                    "PID Function",
+                    "Flexible parameter display",
+                    "AVR (Automatic voltage regulation)",
+                    "Simple PLC, 16-Step Speed Control",
+                    "Torque control build-in",
+                    "S curve acceleration/deceleration",
+                    "Multifunction Programmable"
+                ],
+                specs: {
+                    "Single Phase": "220V 0.75kw to 2.2kw",
+                    "Three Phase": "380V 0.75kw to 400kw",
+                    "Applications": "Injection molding, Fan/Pump, Air Compressor, Oil, Paper-making, Lifting machinery"
+                }
+            },
+
+            'elevator': {
+                name: "CT30L Elevator Drive",
+                category: "Elevator VFD",
+                image: "./assets/images/ct30l.png",
+                desc: "THYRA elevator-specialized drives lead to improved efficiency, reduced energy consumption, and enhanced ride comfort. It consists of an electric motor and a drive controller, which work together to manage the speed, direction, and position of the elevator within the shaft. CT30L elevator drives improved great achievements in security and reliability, control performance, and use functions.",
+                features: [
+                    "Smooth ride performance",
+                    "Safety brake control",
+                    "4 independent S-ramp",
+                    "Light load detection for synchronous motor during evacuation mode",
+                    "Contactor management",
+                    "Energy-saving running mode",
+                    "Support open loop control mode without encoder"
+                ],
+                specs: {
+                    "Control Mode": "Open Loop Control (No Encoder)",
+                    "Safety": "Safety brake control, Light load detection",
+                    "Efficiency": "Energy-saving running mode"
+                }
+            },
+
+            'plc': {
+                name: "EC10 Series PLC",
+                category: "Motion Control",
+                image: "./assets/images/plc.png",
+                desc: "THYRA PLC covers these product series EC10 which can control various kinds of industrial equipment. It stands out from similar programmable logic controllers with high-speed computing and data processing capability and expandable i/Os. PLC is divided into several series of ultra-small, general-purpose, bus-type, high-performance type, and operation control types.",
+                features: [
+                    "High-speed input",
+                    "Multiple communication modes",
+                    "High-speed output",
+                    "Configuration function for extension modules Simple communication instruction",
+                    "Program encryption",
+                    "Power failure protection",
+                    "The user program supports up to 16k steps",
+                    "2 channels of 100Khz pulse output"
+                ],
+                specs: {
+                    "Execution Time": "0.02 micro Sec (Basic Command)",
+                    "Program Capacity": "16K Steps",
+                    "Data Retention": "Permanent save after power off",
+                    "Max I/O Points": "128",
+                    "Expansion Modules": "Max 15",
+                    "Pulse Output": "2 channels 100kHz (Transistor)",
+                    "Comm Ports": "1 way 232, 1 way 485",
+                    "Real-time Clock": "±45 seconds/month"
+                }
+            },
+            'hmi': {
+                name: "Industrial HMI Series",
+                category: "Motion Control",
+                image: "./assets/images/hmi.jpeg",
+                desc: "THYRA HMI is of high resolution, high-speed transmission response, and high stability which displays human-machine interactive information and images in high quality. It supports multiple kinds of main communication modes with a TFT LCD and the latest LED backlight technology. Currently, VEICHI provides HMI in different sizes: 4.3-inch and 7.0-inch.",
+                features: [
+                    "Carry high-performance industrial Cortex-A8 processor (up to 600MHz)",
+                    "Improve data processing efficiency greatly",
+                    "Built-in COM port integrated with RS232/422/485 modes",
+                    "Support industrial Ethernet communication",
+                    "High-capacity FLASH, power-off memory, support U-disk storage",
+                    "New password system which is safer and more reliable",
+                    "Support complicated font edit"
+                ],
+                specs: {
+                    "Processor": "Cortex-A8 (up to 600MHz)",
+                    "Sizes": "4.3-inch, 7.0-inch",
+                    "Communication": "RS232 / 422 / 485 / Ethernet",
+                    "Storage": "High-capacity FLASH + U-disk support",
+                    "Applications": "Petroleum, Natural gas, Chemical pharmaceuticals"
+                }
+            },
+            'rms': {
+                name: "RMS 4G Device",
+                category: "Motion Control",
+                image: "./assets/images/rms.png",
+                desc: "THYRA having in house Solar Pump RMS solution with 2G and 4G communication as per MNRE (Ministry of New and Renewable Energy) guidelines and all features covered as per EESL (Energy Efficiency Services Limited) which allows users and Government to monitor all data regarding Solar power generation, consumption, pump run time, pump water supply in LPM and if any fault occurs, it will instantly give alert through SMS/Call and give data on the cloud of any analysis.",
+                features: [
+                    "Easy installation and configuration",
+                    "24 x 7 Security cum monitoring tool",
+                    "Easy to reconfigure and manage through registered numbers",
+                    "Quick response time",
+                    "Fully customised solution",
+                    "In House R&D and Production",
+                    "Purely Make in India Product",
+                    "1 year warranty on device"
+                ],
+                specs: {
+                    "Input Voltage": "10 to 30V DC",
+                    "Technology": "4G GSM module, LTE category 4",
+                    "GNSS": "GPS Supported",
+                    "SIM": "Micro SIM-Card (3V and 1.8V)",
+                    "Communication": "RS-485 with Transient Voltage Protection",
+                    "Protocol": "Modbus – Master – RTU"
+                }
+            }
+        };
+
+        // --- DYNAMIC LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const activeId = params.get('id') || 'ms10';
+            const activeProduct = productsDB[activeId] || productsDB['ms10'];
+
+            const categories = {};
+            for (const [key, data] of Object.entries(productsDB)) {
+                if (!categories[data.category]) categories[data.category] = [];
+                categories[data.category].push({ id: key, name: data.name });
+            }
+
+            const sidebarContainer = document.getElementById('sidebar-accordion');
+
+            for (const [catName, items] of Object.entries(categories)) {
+                const isOpen = (catName === activeProduct.category);
+                const activeClass = isOpen ? 'active' : '';
+                const openClass = isOpen ? 'open' : '';
+
+                const btn = document.createElement('button');
+                btn.className = `cat-btn ${activeClass}`;
+                btn.innerHTML = `${catName} <i class="fas fa-chevron-down"></i>`;
+
+                const ul = document.createElement('ul');
+                ul.className = `sub-menu ${openClass}`;
+
+                items.forEach(item => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = `product-detail.html?id=${item.id}`;
+                    link.innerText = item.name;
+                    if (item.id === activeId) link.classList.add('current');
+                    li.appendChild(link);
+                    ul.appendChild(li);
+                });
+
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('active');
+                    ul.classList.toggle('open');
+                });
+
+                sidebarContainer.appendChild(btn);
+                sidebarContainer.appendChild(ul);
+            }
+
+            if (activeProduct) {
+                document.title = `${activeProduct.name} - THYRA`;
+                document.getElementById('bread-name').innerText = activeProduct.name;
+                document.getElementById('prod-title').innerText = activeProduct.name;
+                document.getElementById('prod-cat').innerText = activeProduct.category;
+                document.getElementById('prod-desc').innerText = activeProduct.desc;
+                document.getElementById('main-img').src = activeProduct.image;
+                document.getElementById('feat-list').innerHTML = activeProduct.features.map(f => `<li><i class="fas fa-check-circle"></i> ${f}</li>`).join('');
+                document.getElementById('spec-body').innerHTML = Object.entries(activeProduct.specs).map(([k, v]) => `<tr><th>${k}</th><td>${v}</td></tr>`).join('');
+
+                // DOCUMENTATION BUTTONS LOGIC
+                // Exclude HMI and RMS from showing buttons
+                if (activeId === 'rms') {
+                    document.getElementById('doc-section').style.display = 'none';
+                }
+                else {
+                    const docSection = document.getElementById('doc-section');
+                    const btnCatalogue = document.getElementById('btn-catalogue');
+                    const btnManual = document.getElementById('btn-manual');
+
+                    docSection.style.display = 'flex';
+
+                    // Catalogue is always shown for non-RMS
+                    btnCatalogue.style.display = 'inline-flex';
+                    btnCatalogue.href = `./assets/${activeId}catalogue.pdf`;
+
+                    // HMI: Hide Manual, Show Catalogue
+                    if (activeId === 'hmi') {
+                        btnManual.style.display = 'none';
+                    }
+                    // Others: Show Manual
+                    else {
+                        btnManual.style.display = 'inline-flex';
+                        btnManual.href = `./assets/${activeId}manual.pdf`;
+                    }
+                }
+            }
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    if (index === 0) {
+                        document.getElementById('features-content').style.display = 'block';
+                        document.getElementById('specs-content').style.display = 'none';
+                    } else {
+                        document.getElementById('features-content').style.display = 'none';
+                        document.getElementById('specs-content').style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
