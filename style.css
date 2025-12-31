@@ -1,8 +1,8 @@
 /* style.css - Enterprise Edition */
 :root {
-    --primary: #003366;
+    --primary: #006616;
     /* Deep Blue */
-    --primary-dark: #002244;
+    --primary-dark: #094400;
     --accent: #ff9900;
     /* Veichi Orange */
     --text-main: #333333;
@@ -204,7 +204,7 @@ header.sticky {
 /* --- Hero --- */
 .hero {
     height: 600px;
-    background: linear-gradient(rgba(0, 30, 60, 0.6), rgba(0, 30, 60, 0.6)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80');
+    background: linear-gradient(rgba(26, 26, 26, 0.6), rgba(29, 29, 29, 0.6)), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
     display: flex;
