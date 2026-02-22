@@ -1,9 +1,10 @@
 /* style.css - Enterprise Edition */
 :root {
-    --primary: #006616;
+    /* --primary: #006616; */
+    --primary: #74FB7B;
     /* Deep Blue */
     --primary-dark: #094400;
-    --accent: #ff9900;
+    --accent: #F4C430;
     /* Veichi Orange */
     --text-main: #333333;
     --text-light: #666666;
@@ -449,7 +450,7 @@ header.sticky {
 }
 
 .link-arrow {
-    color: #e63946;
+    color: #F4C430;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
