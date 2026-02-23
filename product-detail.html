@@ -320,9 +320,10 @@
                         <li><a href="product-detail.html?id=ms10">MS10 Series Solar VFD</a></li>
                         <li><a href="product-detail.html?id=ms20">MS20 Series Solar VFD</a></li>
                         <li><a href="product-detail.html?id=pcb">Solar PCB Card</a></li>
+                        <li><a href="product-detail.html?id=ip65">IP65 Controller</a></li>
                         <li><a href="product-detail.html?id=cte">CTE Economy Model</a></li>
                         <li><a href="product-detail.html?id=ct10m">CT10M General Drive</a></li>
-                        <li><a href="product-detail.html?id=ct30m">CT30M Heavy Duty</a></li>
+                        <li><a href="product-detail.html?id=ct30l">CT30L Heavy Duty</a></li>
                         <li><a href="product-detail.html?id=elevator">CT30L Elevator Drive</a></li>
                         <li><a href="product-detail.html?id=plc">PLC (Programmable Logic)</a></li>
                         <li><a href="product-detail.html?id=hmi">HMI (Touch Screen)</a></li>
@@ -498,12 +499,36 @@
                 ],
                 specs: { "Type": "OEM PCB", "Voltage": "220V/415V" }
             },
+            'ip65': {
+                name: "IP65 Solar Pump Controller",
+                category: "Solar Solutions",
+                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=80", // add image in assets
+                desc: "THYRA IP65 Solar Pump Controller is a high-efficiency outdoor-rated solar drive solution designed for harsh environmental conditions. It integrates advanced MPPT technology, smart protection features, and dual power compatibility for agricultural and water pumping applications.",
+                features: [
+                    "IP65 Protection – Dust & Water Resistant",
+                    "Advanced MPPT Technology (>99% Efficiency)",
+                    "Supports AM / PMSM / BLDC Motors",
+                    "Auto Sleep & Auto Wake Function",
+                    "Dual Input: Solar DC + Grid AC",
+                    "Dry Run & Tank Full Protection",
+                    "Remote Monitoring Compatible (RMS Support)"
+                ],
+                specs: {
+                    "Protection Grade": "IP65",
+                    "Input Voltage Range": "60V – 800V DC (Model Dependent)",
+                    "Output Voltage": "3 Phase 220V / 380V / 415V",
+                    "Power Range": "0.75kW – 45kW",
+                    "Cooling": "Natural / Intelligent Air Cooling",
+                    "Applications": "Agriculture, Borewell Pumps, Water Supply Systems"
+                }
+            },
             'cte': {
                 name: "CTE Economy Model",
                 category: "Automation VFD",
                 image: "./assets/images/ctethumbnail.jpg",
                 desc: "CTE economical VFD drives are designed for common applications of the small power OEM market. They feature PID, multistage speed, DC braking, and Modbus communication. Based on industrial requirements for high stability, small size, and easy debugging, THYRA has developed this new generation of compact inverters.",
                 features: [
+                    "V/F Control",
                     "SVPWM Control (Space Vector Pulse Width Modulation)",
                     "Compact design, saving installation space",
                     "Built-in PID with 16-step speed control",
@@ -543,6 +568,7 @@
                 image: "./assets/images/ct10m.png",
                 desc: "THYRA CT10M Series is a new high-performance and high-power density design inverter. With low-frequency output characteristics, the CT10M Series has better peak power capacity. This single-phase vector control VFD ranges from 220v 0.75kw to 2.2kw, and the three-phase vector control inverter ranges from 380v 0.75kw to 400kw.",
                 features: [
+                    "1 Minute , 180% 10 Second , 200% 0.5 Second",
                     "VF and Sensor less Vector Control",
                     "Up to 0.5Hz/150% starting torque",
                     "Built-in braking unit (≤30kW), Optional external braking unit (≥37kW)",
@@ -557,18 +583,36 @@
                     "Multifunction Programmable"
                 ],
                 specs: {
-                    "Single Phase": "220V 0.75kw to 2.2kw",
-                    "Three Phase": "380V 0.75kw to 400kw",
-                    "Starting Torque": "Up to 0.5Hz/150%",
-                    "Applications": "Injection molding, Fan/Pump, Air Compressor, Lifting machinery"
+                    "Power Range": "0.75 kW – 450 kW",
+                    "Input Voltage": "3 Phase 380V – 480V (±15%)",
+                    "Input Frequency": "50 / 60 Hz (±5%)",
+                    "Output Voltage": "0 – Rated Input Voltage",
+                    "Output Frequency": "0 – 500 Hz",
+                    "Control Mode": "V/F Control, Sensorless Vector Control (SVC)",
+                    "Overload Capacity": "150% rated current for 60 sec, 180% for 3 sec",
+                    "Carrier Frequency": "1.0 – 16.0 kHz (Model Dependent)",
+                    "Speed Accuracy": "±0.5% (SVC Mode)",
+                    "Starting Torque": "150% at 0.5 Hz (SVC)",
+                    "Frequency Setting Resolution": "Digital: 0.01 Hz, Analog: 0.1% of max frequency",
+                    "Analog Input": "0–10V, 4–20mA",
+                    "Analog Output": "0–10V / 4–20mA",
+                    "Digital Input": "Programmable Multi-function Inputs",
+                    "Relay Output": "Programmable Relay Output",
+                    "Protection Functions": "Over Voltage, Under Voltage, Over Current, Overload, Overheat, Short Circuit, Phase Loss",
+                    "Cooling Method": "Forced Air Cooling",
+                    "Installation": "Wall Mount / Cabinet Installation",
+                    "Operating Temperature": "-10°C to +50°C (Derating above 40°C)",
+                    "Humidity": "<95% RH (Non-condensing)",
+                    "Altitude": "<1000m (Derate above 1000m)",
+                    "Protection Degree": "IP20"
                 }
             },
 
-            'ct30m': {
-                name: "CT30M Heavy Duty",
+            'ct30l': {
+                name: "CT30L Heavy Duty",
                 category: "Automation VFD",
                 image: "./assets/images/ct30m.png",
-                desc: "THYRA CT30M Series is a new high-performance and high-power density design inverter. With low-frequency output characteristics, the CT30M Series has better peak power capacity. This single-phase vector control VFD ranges from 220v 0.75kw to 2.2kw, and the three-phase vector control inverter ranges from 380v 0.75kw to 400kw.",
+                desc: "THYRA CT30L Series is a new high-performance and high-power density design inverter. With low-frequency output characteristics, the CT30L Series has better peak power capacity. This single-phase vector control VFD ranges from 220v 0.75kw to 2.2kw, and the three-phase vector control inverter ranges from 380v 0.75kw to 400kw.",
                 features: [
                     "VF and Sensor less Vector Control",
                     "Up to 0.5Hz/150% starting torque",
@@ -584,9 +628,28 @@
                     "Multifunction Programmable"
                 ],
                 specs: {
-                    "Single Phase": "220V 0.75kw to 2.2kw",
-                    "Three Phase": "380V 0.75kw to 400kw",
-                    "Applications": "Injection molding, Fan/Pump, Air Compressor, Oil, Paper-making, Lifting machinery"
+                    "Power Range": "0.75 kW – 160 kW",
+                    "Input Voltage": "3 Phase 380V – 480V (±15%)",
+                    "Input Frequency": "50 / 60 Hz (±5%)",
+                    "Output Voltage": "0 – Rated Input Voltage",
+                    "Output Frequency": "0 – 500 Hz",
+                    "Control Mode": "V/F Control, Sensorless Vector Control (SVC)",
+                    "Overload Capacity": "150% rated current for 60 sec, 180% for 3 sec",
+                    "Starting Torque": "150% at 0.5 Hz (SVC Mode)",
+                    "Speed Accuracy": "±0.5% (SVC)",
+                    "Carrier Frequency": "1 – 16 kHz (Model Dependent)",
+                    "Frequency Resolution": "Digital: 0.01 Hz, Analog: 0.1% of max frequency",
+                    "Analog Input": "0–10V, 4–20mA",
+                    "Analog Output": "0–10V / 4–20mA",
+                    "Digital Input": "Programmable Multi-function Inputs",
+                    "Relay Output": "Programmable Relay Output",
+                    "Protection Functions": "Over Voltage, Under Voltage, Over Current, Overload, Overheat, Short Circuit, Phase Loss",
+                    "Cooling Method": "Forced Air Cooling",
+                    "Installation": "Wall Mount / Cabinet Mount",
+                    "Operating Temperature": "-10°C to +50°C (Derating above 40°C)",
+                    "Humidity": "<95% RH (Non-condensing)",
+                    "Altitude": "<1000m (Derate above 1000m)",
+                    "Protection Degree": "IP20"
                 }
             },
 
@@ -653,7 +716,7 @@
                 ],
                 specs: {
                     "Processor": "Cortex-A8 (up to 600MHz)",
-                    "Sizes": "4.3-inch, 7.0-inch",
+                    "Sizes": "4.3-inch, 7.0-inch, 10.1 inch",
                     "Communication": "RS232 / 422 / 485 / Ethernet",
                     "Storage": "High-capacity FLASH + U-disk support",
                     "Applications": "Petroleum, Natural gas, Chemical pharmaceuticals"
@@ -661,7 +724,7 @@
             },
             'rms': {
                 name: "RMS 4G Device",
-                category: "Motion Control",
+                category: "RMS 4G",
                 image: "./assets/images/rms.png",
                 desc: "THYRA having in house Solar Pump RMS solution with 2G and 4G communication as per MNRE (Ministry of New and Renewable Energy) guidelines and all features covered as per EESL (Energy Efficiency Services Limited) which allows users and Government to monitor all data regarding Solar power generation, consumption, pump run time, pump water supply in LPM and if any fault occurs, it will instantly give alert through SMS/Call and give data on the cloud of any analysis.",
                 features: [
@@ -754,7 +817,20 @@
 
                     // Catalogue is always shown for non-RMS
                     btnCatalogue.style.display = 'inline-flex';
-                    btnCatalogue.href = `./assets/${activeId}catalogue.pdf`;
+                    // btnCatalogue.href = `./assets/${activeId}catalogue.pdf`;
+                    // Solar brochure file
+                    const solarBrochure = "./assets/thyrasolarvfdcatalogue.pdf";
+
+                    // For Solar products use same brochure
+                    if (activeId === 'ms20' || activeId === 'ip65') {
+                        btnCatalogue.href = solarBrochure;
+                    }
+                    else if (activeId === 'ct30l') {
+                        btnCatalogue.href = "./assets/ct30lcatalogue.pdf";
+                        // --- DEFAULT PRODUCTS ---
+                    } else {
+                        btnCatalogue.href = `./assets/${activeId}catalogue.pdf`;
+                    }
 
                     // HMI: Hide Manual, Show Catalogue
                     if (activeId === 'hmi') {
@@ -763,7 +839,13 @@
                     // Others: Show Manual
                     else {
                         btnManual.style.display = 'inline-flex';
-                        btnManual.href = `./assets/${activeId}manual.pdf`;
+                        // btnManual.href = `./assets/${activeId}manual.pdf`;
+                        // CT30L special manual
+                        if (activeId === 'ct30l') {
+                            btnManual.href = "./assets/ct30lmanual.pdf";
+                        } else {
+                            btnManual.href = `./assets/${activeId}manual.pdf`;
+                        }
                     }
                 }
             }
