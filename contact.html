@@ -83,17 +83,18 @@
 
             <div style="background:#f9f9f9; padding:30px; border-radius:5px; border-top:4px solid var(--accent);">
                 <h3 style="margin-bottom:20px;">Send an Inquiry</h3>
-                <form>
+                <form id="thyraForm">
                     <div style="margin-bottom:15px;">
-                        <input type="text" placeholder="Your Name"
+                        <input id="thyraName" type="text" placeholder="Your Name"
                             style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
                     </div>
                     <div style="margin-bottom:15px;">
-                        <input type="email" placeholder="Your Email"
+                        <input id="thyraEmail" type="email" placeholder="Your Email"
                             style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
                     </div>
                     <div style="margin-bottom:15px;">
-                        <select style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
+                        <select id="thyraRegion"
+                            style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
                             <option>Select Region</option>
                             <option>Asia Pacific</option>
                             <option>Europe</option>
@@ -102,10 +103,10 @@
                         </select>
                     </div>
                     <div style="margin-bottom:15px;">
-                        <textarea placeholder="Message / Product Requirement" rows="4"
+                        <textarea id="thyraMessage" placeholder="Message / Product Requirement" rows="4"
                             style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;"></textarea>
                     </div>
-                    <button type="button" class="btn-quote" style="width:100%; border:none; cursor:pointer;">Submit
+                    <button type="submit" class="btn-quote" style="width:100%; border:none; cursor:pointer;">Submit
                         Inquiry</button>
                 </form>
             </div>
@@ -118,6 +119,60 @@
         <h2>Google Map Integration Area</h2>
     </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("thyraForm");
+            if (!form) return;
+
+            const baseURL = "https://mail.prxdevs.com:2011";
+
+            form.addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                const name = document.getElementById("thyraName").value;
+                const email = document.getElementById("thyraEmail").value;
+                const region = document.getElementById("thyraRegion").value;
+                const message = document.getElementById("thyraMessage").value;
+
+                const finalMessage = `
+Region: ${region}
+
+Requirement:
+${message}
+        `;
+
+                fetch(`${baseURL}/submitForm`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "x-site-key": "thyra_secure_2026"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: finalMessage
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.message === "Email sent successfully") {
+                            alert("Inquiry sent successfully!");
+                            form.reset();
+                        } else {
+                            throw new Error(data.message);
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert("Something went wrong.");
+                    });
+
+            });
+
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 
