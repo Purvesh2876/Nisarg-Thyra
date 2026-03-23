@@ -95,6 +95,10 @@
                             style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
                     </div>
                     <div style="margin-bottom:15px;">
+                        <input id="thyraPhone" type="tel" placeholder="Your Phone Number"
+                            style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
+                    </div>
+                    <div style="margin-bottom:15px;">
                         <select id="thyraRegion"
                             style="width:100%; padding:12px; border:1px solid #ddd; border-radius:4px;">
                             <option>Select Region</option>
@@ -117,10 +121,10 @@
     </div>
 
     <!-- <div style="height:400px; background:#eee; display:flex; align-items:center; justify-content:center; color:#888;"> -->
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.9174994036707!2d72.635338624945!3d22.96653169118213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bd7c3764853%3A0x42bbf91f455b2796!2sThyra%20Drives%20%26%20Control%20System-%20Solar%20%26%20AC%20Drive%20(VFD)%20manufacturer!5e0!3m2!1sen!2sin!4v1774033636127!5m2!1sen!2sin"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2574.9174994036707!2d72.635338624945!3d22.96653169118213!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bd7c3764853%3A0x42bbf91f455b2796!2sThyra%20Drives%20%26%20Control%20System-%20Solar%20%26%20AC%20Drive%20(VFD)%20manufacturer!5e0!3m2!1sen!2sin!4v1774033636127!5m2!1sen!2sin"
+        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <!-- </div> -->
 
@@ -138,10 +142,12 @@
 
                 const name = document.getElementById("thyraName").value;
                 const email = document.getElementById("thyraEmail").value;
+                const phone = document.getElementById("thyraPhone").value;
                 const region = document.getElementById("thyraRegion").value;
                 const message = document.getElementById("thyraMessage").value;
 
                 const finalMessage = `
+Phone: ${phone}
 Region: ${region}
 
 Requirement:
@@ -178,6 +184,7 @@ ${message}
 
         });
     </script>
+    <footer id="main-footer"></footer>
     <script src="script.js"></script>
 </body>
 

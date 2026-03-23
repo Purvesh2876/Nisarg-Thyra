@@ -110,4 +110,16 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         startCounters(); 
     }
+    /* -------------------------------------------------------
+       4. DYNAMIC FOOTER LOADING
+    ------------------------------------------------------- */
+    const footerPlaceholder = document.getElementById('main-footer');
+    if (footerPlaceholder) {
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                footerPlaceholder.innerHTML = data;
+            })
+            .catch(error => console.error('Error loading footer:', error));
+    }
 });
