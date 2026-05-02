@@ -331,6 +331,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <!-- <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li> -->
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
             </ul>
@@ -415,17 +416,32 @@
                     "Best MPPT Algorithm (Efficiency > 99.5%)",
                     "Supports AM / PMSM / BLDC Motors",
                     "Auto Sleep (Weak Sun) & Auto Wake (Sun Resumes)",
-                    "Varied Liquid Level Control (Tank Full / Dry Run)",
+                    "Hybrid Operation (Solar + Grid/DG optional)",
+                    "Soft Start & Smooth Acceleration",
+                    "Dry Run Protection (for motor safety)",
+                    "Programmable Parameters for different applications",
                     "Dual Supply: Solar DC & Grid AC Compatible",
                     "Remote Monitoring via GPRS (RMS) Support"
                 ],
                 specs: {
-                    "2T Series Input": "60V - 450V DC (Best: 360V)",
-                    "4T Series Input": "230V - 800V DC (Best: 600V-750V)",
-                    "Output Voltage": "3-Phase 220V / 380V / 415V",
-                    "Power Range": "0.75kW to 45kW",
-                    "Protection": "Over Current, Over Voltage, Short Circuit, Phase Loss",
-                    "Cooling": "Independent Air Duct Design"
+                    "Input Power (DC)": "For 2S Series - 80V 450V DC – (Solar Panel Input) <br> For 4T Series - 230V 900V DC (Solar Panel Input)",
+                    "Input Power (AC - Optional)": "For 2S Series - 1 Phase 230Vac <br> For 4T Series - 3 Phase 415Vac",
+                    "Output Voltage": "3 Phase, 0 – Rated Input Voltage",
+                    "Output Frequency": "0 – 200 Hz",
+                    "Power Range": "1 HP – 100 HP (Customizable)",
+                    "Control Method": "V/F Control / Sensorless Vector Control",
+                    "Motor Type": "Induction Motor (AC), PMSM, BLDC, 1 Ph Induction Motor",
+                    "MPPT Efficiency": "≥ 99.99%",
+                    "Protection Features": "Over Voltage, Under Voltage, Over Current, Short Circuit, Overload, Over Temperature, Phase Loss, Dry Run, Etc.",
+                    "Cooling Method": "Forced Air Cooling",
+                    "Display": "Digital Keypad / LCD Display",
+                    "Operating Temperature": "-10°C to +55°C",
+                    "Humidity": "< 95% (non-condensing)",
+                    "Altitude": "Up to 1000 meters (Derating above)",
+                    "Enclosure Protection": "IP20 / IP21 (Optional IP54 Panel Mount)",
+                    "Communication (Optional)": "RS485 / Modbus",
+                    "Installation": "Wall Mount / Panel Mount",
+                    "Application": "Motors for Flour Mill, Expeller, Pumps, Compressors, Etc."
                 }
             },
             'ms20': {
@@ -434,13 +450,36 @@
                 image: "./assets/images/ms20thumbnail.png",
                 desc: "MS20 SERIES Drives have excellent drive and control performance. It features advanced Synchronous and PMSM Driving Technology, utilizing the BEST Sensorless vector control technology.",
                 features: [
-                    "MS20 SERIES Drives have excellent drive and control performance",
-                    "Advanced Synchronous and PMSM Driving Technology",
-                    "BEST Sensorless vector control technology",
-                    "Very good Usability and Reliability for the enriched hardware configurations and software functions",
-                    "Wide-range and High-Efficiency MPPT Technology"
+                    "Best MPPT Algorithm (Efficiency > 99.5%)",
+                    "Supports AM / PMSM / BLDC Motors",
+                    "Auto Sleep (Weak Sun) & Auto Wake (Sun Resumes)",
+                    "Hybrid Operation (Solar + Grid/DG optional)",
+                    "Soft Start & Smooth Acceleration",
+                    "Dry Run Protection (for motor safety)",
+                    "Programmable Parameters for different applications",
+                    "Dual Supply: Solar DC & Grid AC Compatible",
+                    "Remote Monitoring via GPRS (RMS) Support"
                 ],
-                specs: { "Input": "DC 250V-900V", "Power": "2.2kW-110kW" }
+                specs: {
+                    "Input Power (DC)": "For 2S Series - 80V 450V DC – (Solar Panel Input) <br> For 4T Series - 230V 900V DC (Solar Panel Input)",
+                    "Input Power (AC - Optional)": "For 2S Series - 1 Phase 230Vac <br> For 4T Series - 3 Phase 415Vac",
+                    "Output Voltage": "3 Phase, 0 – Rated Input Voltage",
+                    "Output Frequency": "0 – 200 Hz",
+                    "Power Range": "1 HP – 100 HP (Customizable)",
+                    "Control Method": "V/F Control / Sensorless Vector Control",
+                    "Motor Type": "Induction Motor (AC), PMSM, BLDC, 1 Ph Induction Motor",
+                    "MPPT Efficiency": "≥ 99.99%",
+                    "Protection Features": "Over Voltage, Under Voltage, Over Current, Short Circuit, Overload, Over Temperature, Phase Loss, Dry Run, Etc.",
+                    "Cooling Method": "Forced Air Cooling",
+                    "Display": "Digital Keypad / LCD Display",
+                    "Operating Temperature": "-10°C to +55°C",
+                    "Humidity": "< 95% (non-condensing)",
+                    "Altitude": "Up to 1000 meters (Derating above)",
+                    "Enclosure Protection": "IP20 / IP21 (Optional IP54 Panel Mount)",
+                    "Communication (Optional)": "RS485 / Modbus",
+                    "Installation": "Wall Mount / Panel Mount",
+                    "Application": "Motors for Flour Mill, Expeller, Pumps, Compressors, Etc."
+                }
             },
             'pcb': {
                 name: "Solar VFD PCB Card",
@@ -657,7 +696,7 @@
                 }
             },
             'hmi': {
-                name: "Industrial HMI Series",
+                name: "HMI – TYR100 Series",
                 category: "Motion Control",
                 image: "./assets/images/hmi.jpeg",
                 desc: "THYRA HMI is of high resolution, high-speed transmission response, and high stability which displays human-machine interactive information and images in high quality. It supports multiple kinds of main communication modes with a TFT LCD and the latest LED backlight technology. Currently, VEICHI provides HMI in different sizes: 4.3-inch and 7.0-inch.",

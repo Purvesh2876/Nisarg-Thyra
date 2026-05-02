@@ -140,6 +140,83 @@
             border-bottom: 1px solid #ddd;
         }
 
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 35px;
+        }
+
+        .product-content h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .product-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+            white-space: pre-line;
+        }
+
+        .product-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .why-choose-box {
+            background: #f0f7ff;
+            padding: 25px;
+            border-left: 5px solid var(--primary);
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .why-choose-box h5 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -159,6 +236,10 @@
 
             .app-list {
                 grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 250px;
             }
         }
     </style>
@@ -203,6 +284,7 @@
                 </li>
 
                 <li class="nav-item"><a href="solutions.html" class="nav-link active">Solutions</a></li>
+                <!-- <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li> -->
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
             </ul>
@@ -231,6 +313,14 @@
 
             <h2 style="color:var(--primary); margin-bottom:20px;">Common Applications</h2>
             <ul id="applications-list" class="app-list"></ul>
+
+            <!-- Products Section for Solar -->
+            <div id="solar-products-container" style="display: none;">
+                <h2
+                    style="color:var(--primary); margin-top: 60px; margin-bottom:30px; border-left: 5px solid var(--accent); padding-left: 15px;">
+                    Specialized Solar Applications</h2>
+                <div id="solar-products-list"></div>
+            </div>
         </div>
 
         <div class="content-sidebar">
@@ -287,7 +377,77 @@
                     { title: "Dry Run Protection", desc: "Intelligent sensors prevent pump damage when water is low." },
                     { title: "Remote Monitoring (RMS)", desc: "Track pump performance via mobile app anywhere in India." }
                 ],
-                apps: ["Agricultural Irrigation", "Remote Village Water Supply", "Livestock Watering", "Desert Reclamation Projects"]
+                apps: ["Agricultural Irrigation", "Remote Village Water Supply", "Livestock Watering", "Desert Reclamation Projects"],
+                products: [
+                    {
+                        name: "Floor Mill (Atta Chakki)",
+                        image: "./assets/images/solar_floormill.png",
+                        description: `THYRA SOLAR DRIVE is a specialized solution designed to efficiently operate flour mill motors using solar power. Engineered for performance and reliability, our drives ensure smooth and consistent motor operation even in areas with unstable or no grid electricity.
+
+Our solar drive technology enables direct utilization of solar energy to run flour mill motors, reducing dependency on conventional electricity and significantly lowering operating costs. It is an ideal solution for rural, semi-urban, and off-grid locations.`,
+                        features: [
+                            "Efficient motor control using solar power",
+                            "Compatible with various flour mill motors",
+                            "Stable performance under varying solar conditions",
+                            "Energy-saving and cost-effective operation",
+                            "Robust design for long-term durability",
+                            "Easy integration with solar panel systems"
+                        ],
+                        applications: [
+                            "Solar-powered flour mills (Atta Chakki)",
+                            "Grain processing units in rural and remote areas",
+                            "Small and medium-scale milling businesses",
+                            "Agro-processing industries"
+                        ],
+                        whyChoose: "At THYRA DRIVES, we focus on delivering advanced drive solutions that combine innovation with sustainability. Our solar drives are designed to maximize efficiency, ensure reliable motor performance, and support the growing demand for clean energy in the flour milling industry."
+                    },
+                    {
+                        name: "Expeller",
+                        image: "./assets/images/solar_expeller.png",
+                        description: `THYRA SOLAR DRIVE is a high-performance drive system specially designed to operate expeller mill motors using solar power. Engineered for efficiency and durability, it ensures smooth and reliable motor performance while reducing dependency on conventional electricity.
+
+Our solution is ideal for modern agro-processing industries looking to lower operating costs and adopt sustainable energy solutions.
+
+With rising energy costs and increasing demand for eco-friendly operations, THYRA SOLAR DRIVE enables expeller mills to run efficiently on solar energy. It helps businesses achieve long-term savings while maintaining consistent production output.`,
+                        features: [
+                            "Operates expeller mill motors directly through solar power",
+                            "Stable performance under varying sunlight conditions",
+                            "Energy-efficient and cost-saving solution",
+                            "Durable and industrial-grade design",
+                            "Low maintenance and long operational life",
+                            "Compatible with multiple motor capacities"
+                        ],
+                        applications: [
+                            "Oil expeller mills (groundnut, mustard, sesame, etc.)",
+                            "Agro-processing industries",
+                            "Rural and semi-urban production units",
+                            "Small and medium-scale industrial setups"
+                        ],
+                        whyChoose: "At THYRA DRIVES, we are committed to delivering innovative and reliable drive solutions for industrial applications. Our focus on quality, performance, and customer satisfaction makes us a trusted partner in the solar-powered machinery segment."
+                    },
+                    {
+                        name: "Cold Storage",
+                        image: "./assets/images/solar_cold_storage.png",
+                        description: `THYRA SOLAR DRIVE is a high-performance drive system designed to efficiently operate compressor motors in cold storage facilities using solar power. Engineered for reliability and precision, it ensures continuous and stable performance—critical for temperature-sensitive storage applications.
+
+Cold storage operations require uninterrupted power for compressors. THYRA SOLAR DRIVE enables seamless utilization of solar energy to run compressor motors, significantly reducing electricity costs while maintaining consistent cooling performance.`,
+                        features: [
+                            "Efficient operation of compressor motors through solar power",
+                            "Stable and consistent performance for continuous cooling",
+                            "Reduces dependency on grid electricity and diesel generators",
+                            "Energy-saving and cost-effective solution",
+                            "Heavy-duty design for industrial applications",
+                            "Low maintenance and long service life"
+                        ],
+                        applications: [
+                            "Cold storage warehouses",
+                            "Food and agricultural storage units",
+                            "Dairy and pharmaceutical storage",
+                            "Refrigeration systems in rural and semi-urban areas"
+                        ],
+                        whyChoose: "At THYRA DRIVES, we deliver innovative solar drive solutions designed for demanding industrial applications. Our focus on performance, durability, and customer satisfaction makes us a trusted partner in energy-efficient technologies."
+                    }
+                ]
             },
             'compressor': {
                 title: "Air Compressor Automation",
@@ -508,6 +668,54 @@
                 appContainer.innerHTML = data.apps.map(app => `
                     <li><i class="fas fa-arrow-circle-right"></i> <span>${app}</span></li>
                 `).join('');
+
+                // Populate Solar Products if they exist
+                const productsContainer = document.getElementById('solar-products-container');
+                const productsList = document.getElementById('solar-products-list');
+
+                if (data.products && data.products.length > 0) {
+                    productsContainer.style.display = 'block';
+                    productsList.innerHTML = data.products.map(p => `
+                        <div class="product-card">
+                            <img src="${p.image}" alt="${p.name}" class="product-image">
+                            <div class="product-content">
+                                <h3>${p.name}</h3>
+                                <p>${p.description}</p>
+                                
+                                <div style="margin-top:20px;">
+                                    <h4 style="color:var(--primary); font-size:1.1rem; margin-bottom:10px;">Key Features</h4>
+                                    <div class="product-features-grid">
+                                        ${p.features.map(f => `
+                                            <div class="feature-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>${f}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+
+                                <div style="margin-top:25px;">
+                                    <h4 style="color:var(--primary); font-size:1.1rem; margin-bottom:10px;">Applications</h4>
+                                    <div class="product-features-grid">
+                                        ${p.applications.map(a => `
+                                            <div class="feature-item">
+                                                <i class="fas fa-arrow-right"></i>
+                                                <span>${a}</span>
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                </div>
+
+                                <div class="why-choose-box">
+                                    <h5>Why Choose THYRA SOLAR DRIVE?</h5>
+                                    <p style="margin-bottom:0; font-style:italic;">${p.whyChoose}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                } else {
+                    productsContainer.style.display = 'none';
+                }
             } else {
                 document.getElementById('page-title').innerText = "Solution Not Found";
                 document.getElementById('overview-content').innerText = "Please select a valid solution from the menu.";

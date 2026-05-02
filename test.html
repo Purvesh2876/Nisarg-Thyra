@@ -4,33 +4,1063 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>CHAMPS SPORTS — Nadiad | Since 2012</title>
+
+    <!-- Fonts: Clash Display + General Sans from Fontshare -->
+    <link
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#080808',
+                        acid: '#DFFF00',
+                        carbon: '#2D3436',
+                        smoke: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        clash: ['"Clash Display"', 'sans-serif'],
+                        general: ['"General Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* ══════════════════════════════════════════
+           BASE RESETS & GLOBAL STYLES
+           ══════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: #DFFF00;
+            color: #080808;
+        }
+
+        html {
+            scroll-behavior: auto;
+            /* We handle smooth scroll via JS */
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #080808;
+            color: #ffffff;
+            font-family: 'General Sans', sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* ══════════════════════════════════════════
+           CUSTOM CURSOR
+           ══════════════════════════════════════════ */
+        .cursor-dot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            background: #DFFF00;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                height 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+                background 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot.expand {
+            width: 60px;
+            height: 60px;
+            background: #DFFF00;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-trail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(223, 255, 0, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .cursor-trail.expand {
+            width: 80px;
+            height: 80px;
+            border-color: rgba(223, 255, 0, 0.15);
+        }
+
+        /* ══════════════════════════════════════════
+           HERO KINETIC TYPOGRAPHY
+           ══════════════════════════════════════════ */
+        .hero-letter {
+            display: inline-block;
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+            transition: color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                text-shadow 0.4s ease;
+            cursor: none;
+            line-height: 0.85;
+        }
+
+        .hero-letter:hover {
+            color: #DFFF00;
+            transform: skewX(-8deg) scaleY(1.1);
+            text-shadow: 0 0 80px rgba(223, 255, 0, 0.5),
+                0 0 160px rgba(223, 255, 0, 0.2);
+        }
+
+        /* ══════════════════════════════════════════
+           GLASSMORPHISM BENTO CARDS
+           ══════════════════════════════════════════ */
+        .glass-card {
+            background: linear-gradient(135deg,
+                    rgba(45, 52, 54, 0.4) 0%,
+                    rgba(8, 8, 8, 0.6) 100%);
+            backdrop-filter: blur(20px) saturate(1.5);
+            -webkit-backdrop-filter: blur(20px) saturate(1.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: border-color 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                    rgba(223, 255, 0, 0.06),
+                    transparent 40%);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(223, 255, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .glass-card>* {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ══════════════════════════════════════════
+           HORIZONTAL SCROLL HERITAGE
+           ══════════════════════════════════════════ */
+        .heritage-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .outlined-text {
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            -webkit-text-stroke: 2px rgba(223, 255, 0, 0.2);
+            color: transparent;
+            white-space: nowrap;
+            user-select: none;
+            line-height: 1;
+        }
+
+        /* ══════════════════════════════════════════
+           MAGNETIC BUTTON
+           ══════════════════════════════════════════ */
+        .magnetic-btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 40px;
+            background: #DFFF00;
+            color: #080808;
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 60px;
+            cursor: none;
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s ease;
+            text-decoration: none;
+        }
+
+        .magnetic-btn:hover {
+            box-shadow: 0 0 60px rgba(223, 255, 0, 0.3),
+                0 0 120px rgba(223, 255, 0, 0.1);
+        }
+
+        .magnetic-btn .btn-ripple {
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 8, 8, 0.1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .magnetic-btn:hover .btn-ripple {
+            transform: scaleX(1);
+        }
+
+        .magnetic-btn span,
+        .magnetic-btn svg {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ══════════════════════════════════════════
+           REVEAL ANIMATION BASE STATES
+           ══════════════════════════════════════════ */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        /* ══════════════════════════════════════════
+           GRAIN OVERLAY (Cinematic Texture)
+           ══════════════════════════════════════════ */
+        .grain-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 128px 128px;
+        }
+
+        /* ══════════════════════════════════════════
+           PRELOADER
+           ══════════════════════════════════════════ */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            background: #080808;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .preloader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .preloader-fill {
+            width: 0%;
+            height: 100%;
+            background: #DFFF00;
+            border-radius: 2px;
+        }
+
+        /* ══════════════════════════════════════════
+           NAV PILL
+           ══════════════════════════════════════════ */
+        .nav-pill {
+            backdrop-filter: blur(16px) saturate(1.8);
+            -webkit-backdrop-filter: blur(16px) saturate(1.8);
+            background: rgba(8, 8, 8, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ══════════════════════════════════════════
+           BADGE STYLES
+           ══════════════════════════════════════════ */
+        .badge-acid {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: rgba(223, 255, 0, 0.08);
+            border: 1px solid rgba(223, 255, 0, 0.2);
+            border-radius: 999px;
+            font-family: 'General Sans', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #DFFF00;
+        }
+
+        /* ══════════════════════════════════════════
+           DIVIDER LINE
+           ══════════════════════════════════════════ */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(223, 255, 0, 0.15) 50%,
+                    transparent 100%);
+        }
+
+        /* ══════════════════════════════════════════
+           MOBILE CURSOR FIX
+           ══════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor-dot,
+            .cursor-trail {
+                display: none !important;
+            }
+        }
+
+        /* ══════════════════════════════════════════
+           SCROLL INDICATOR
+           ══════════════════════════════════════════ */
+        .scroll-indicator {
+            width: 24px;
+            height: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            position: relative;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: #DFFF00;
+            border-radius: 4px;
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(14px);
+                opacity: 0.3;
+            }
+        }
+
+        /* ══════════════════════════════════════════
+           STAT COUNTER
+           ══════════════════════════════════════════ */
+        .stat-number {
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat-item">
-                <h3><span class="counter" data-target="2021">0</span></h3>
-                <p>Established</p>
+
+    <!-- ════════════════════════════════════════
+         PRELOADER
+         ════════════════════════════════════════ -->
+    <div class="preloader" id="preloader">
+        <div class="font-clash text-acid text-lg tracking-[0.3em] uppercase">Champs Sports</div>
+        <div class="preloader-bar">
+            <div class="preloader-fill" id="preloaderFill"></div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════
+         FILM GRAIN OVERLAY
+         ════════════════════════════════════════ -->
+    <div class="grain-overlay"></div>
+
+    <!-- ════════════════════════════════════════
+         CUSTOM CURSOR
+         ════════════════════════════════════════ -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
+
+    <!-- ════════════════════════════════════════
+         NAVIGATION
+         ════════════════════════════════════════ -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[9990] nav-pill rounded-full px-8 py-3 flex items-center gap-8"
+        id="mainNav">
+        <a href="#hero"
+            class="font-clash text-sm tracking-[0.15em] uppercase text-white/80 hover:text-acid transition-colors duration-300 interactive">Home</a>
+        <a href="#features"
+            class="font-clash text-sm tracking-[0.15em] uppercase text-white/80 hover:text-acid transition-colors duration-300 interactive">Gear</a>
+        <a href="#heritage"
+            class="font-clash text-sm tracking-[0.15em] uppercase text-white/80 hover:text-acid transition-colors duration-300 interactive">Heritage</a>
+        <a href="#contact"
+            class="font-clash text-sm tracking-[0.15em] uppercase text-white/80 hover:text-acid transition-colors duration-300 interactive">Contact</a>
+    </nav>
+
+    <!-- ════════════════════════════════════════
+         SECTION 1 — HERO
+         ════════════════════════════════════════ -->
+    <section id="hero" class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
+        <!-- Ambient Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04]"
+            style="background: radial-gradient(circle, #DFFF00 0%, transparent 70%);"></div>
+
+        <!-- Top Badge -->
+        <div class="badge-acid mb-8 reveal-up" id="heroBadge">
+            <span class="w-2 h-2 rounded-full bg-acid inline-block animate-pulse"></span>
+            Nadiad's Premier Sports Store
+        </div>
+
+        <!-- Kinetic Title -->
+        <h1 class="text-center leading-none select-none" id="heroTitle">
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="C">C</span>
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="H">H</span>
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="A">A</span>
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="M">M</span>
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="P">P</span>
+            <span class="hero-letter text-[15vw] md:text-[13vw] lg:text-[12vw] interactive" data-letter="S">S</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="font-general text-white/40 text-sm md:text-base tracking-[0.35em] uppercase mt-6 reveal-up"
+            id="heroSub">
+            Sports &nbsp;·&nbsp; Performance &nbsp;·&nbsp; Legacy
+        </p>
+
+        <!-- Stats Row -->
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 mt-16 reveal-up" id="heroStats">
+            <div class="text-center">
+                <div class="stat-number text-3xl md:text-4xl text-acid" data-count="14">0</div>
+                <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mt-1">Years Strong</div>
             </div>
-            <div class="stat-item">
-                <h3><span class="counter" data-target="6">0</span>+</h3>
-                <p>States Covered</p>
+            <div class="w-px h-10 bg-white/10"></div>
+            <div class="text-center">
+                <div class="stat-number text-3xl md:text-4xl text-white" data-count="10000">0</div>
+                <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mt-1">Happy Athletes</div>
             </div>
-            <div class="stat-item">
-                <h3><span class="counter" data-target="100">0</span>%</h3>
-                <p>Service Support</p>
+            <div class="w-px h-10 bg-white/10 hidden md:block"></div>
+            <div class="text-center hidden md:block">
+                <div class="stat-number text-3xl md:text-4xl text-white" data-count="500">0</div>
+                <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mt-1">Premium Brands</div>
             </div>
-            <div class="stat-item">
-                <h3><span class="counter" data-target="50">0</span>+</h3>
-                <p>Products</p>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+            <div class="scroll-indicator"></div>
+            <span class="font-general text-white/20 text-[10px] tracking-[0.3em] uppercase">Scroll</span>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         DIVIDER
+         ════════════════════════════════════════ -->
+    <div class="divider my-4"></div>
+
+    <!-- ════════════════════════════════════════
+         SECTION 2 — BENTO GRID FEATURES
+         ════════════════════════════════════════ -->
+    <section id="features" class="relative py-24 md:py-40 px-4 md:px-8 lg:px-16 max-w-[1440px] mx-auto">
+        <!-- Section Header -->
+        <div class="mb-16 md:mb-24">
+            <div class="badge-acid mb-6 reveal-up">Our Gear</div>
+            <h2 class="font-clash font-bold text-4xl md:text-6xl lg:text-7xl uppercase tracking-tight reveal-up">
+                Built for<br>
+                <span class="text-acid">Champions</span>
+            </h2>
+            <p
+                class="font-general text-white/40 text-base md:text-lg max-w-lg mt-6 leading-relaxed tracking-wide reveal-up">
+                Three decades of curating the finest sports equipment. Every product hand-selected for peak performance.
+            </p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5 auto-rows-[280px] md:auto-rows-[320px]">
+
+            <!-- Card 1: Cricket Elite (Large) -->
+            <div class="glass-card md:col-span-7 md:row-span-2 p-8 md:p-12 flex flex-col justify-between group interactive reveal-scale"
+                data-bento="cricket">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-3 h-3 rounded-full bg-acid/80"></div>
+                        <span class="font-general text-white/50 text-xs tracking-[0.2em] uppercase">Category 01</span>
+                    </div>
+                    <h3
+                        class="font-clash font-bold text-3xl md:text-5xl lg:text-6xl uppercase tracking-tight text-white group-hover:text-acid transition-colors duration-500">
+                        Cricket<br>Elite
+                    </h3>
+                </div>
+                <div class="flex items-end justify-between">
+                    <p class="font-general text-white/30 text-sm max-w-[280px] leading-relaxed">
+                        Premium bats, pads, helmets & kits from world-class brands. Game-ready equipment for every
+                        level.
+                    </p>
+                    <div
+                        class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-acid/40 group-hover:bg-acid/10 transition-all duration-500">
+                        <svg class="w-5 h-5 text-white/40 group-hover:text-acid transition-colors duration-500 -rotate-45"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Footwear Gear -->
+            <div class="glass-card md:col-span-5 p-8 md:p-10 flex flex-col justify-between group interactive reveal-scale"
+                data-bento="footwear">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-acid/80"></div>
+                        <span class="font-general text-white/50 text-xs tracking-[0.2em] uppercase">Category 02</span>
+                    </div>
+                    <h3
+                        class="font-clash font-bold text-2xl md:text-4xl uppercase tracking-tight text-white group-hover:text-acid transition-colors duration-500">
+                        Footwear<br>Gear
+                    </h3>
+                </div>
+                <p class="font-general text-white/30 text-sm leading-relaxed">
+                    Running, training, court & turf. Every stride engineered for dominance.
+                </p>
+            </div>
+
+            <!-- Card 3: Fitness Pro -->
+            <div class="glass-card md:col-span-5 p-8 md:p-10 flex flex-col justify-between group interactive reveal-scale"
+                data-bento="fitness">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-3 h-3 rounded-full bg-acid/80"></div>
+                        <span class="font-general text-white/50 text-xs tracking-[0.2em] uppercase">Category 03</span>
+                    </div>
+                    <h3
+                        class="font-clash font-bold text-2xl md:text-4xl uppercase tracking-tight text-white group-hover:text-acid transition-colors duration-500">
+                        Fitness<br>Pro
+                    </h3>
+                </div>
+                <p class="font-general text-white/30 text-sm leading-relaxed">
+                    Gym essentials, supplements & wearable tech. Push your limits, daily.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Bottom Accent Text -->
+        <div class="mt-16 md:mt-24 flex items-center gap-6 reveal-up">
+            <div class="w-16 h-px bg-acid/30"></div>
+            <span class="font-general text-white/20 text-xs tracking-[0.3em] uppercase">Explore 500+ brands
+                in-store</span>
+        </div>
+    </section>
+
+    <!-- ════════════════════════════════════════
+         DIVIDER
+         ════════════════════════════════════════ -->
+    <div class="divider my-4"></div>
+
+    <!-- ════════════════════════════════════════
+         SECTION 3 — HERITAGE HORIZONTAL SCROLL
+         ════════════════════════════════════════ -->
+    <section id="heritage" class="relative py-24 md:py-40 overflow-hidden">
+        <!-- Section Header -->
+        <div class="px-4 md:px-8 lg:px-16 max-w-[1440px] mx-auto mb-16">
+            <div class="badge-acid mb-6 reveal-up">Our Story</div>
+            <h2 class="font-clash font-bold text-4xl md:text-6xl lg:text-7xl uppercase tracking-tight reveal-up">
+                The <span class="text-acid">Legacy</span>
+            </h2>
+        </div>
+
+        <!-- Horizontal Scroll Container -->
+        <div class="relative h-[40vh] md:h-[50vh] flex items-center overflow-hidden" id="heritageScroll">
+            <div class="heritage-track" id="heritageTrack">
+                <span class="outlined-text text-[20vw] md:text-[15vw] px-8">&nbsp;SINCE 2012&nbsp;</span>
+                <span class="outlined-text text-[20vw] md:text-[15vw] px-8"
+                    style="-webkit-text-stroke-color: rgba(223,255,0,0.08);">&nbsp;·&nbsp;NADIAD&nbsp;</span>
+                <span class="outlined-text text-[20vw] md:text-[15vw] px-8">&nbsp;SINCE 2012&nbsp;</span>
+                <span class="outlined-text text-[20vw] md:text-[15vw] px-8"
+                    style="-webkit-text-stroke-color: rgba(223,255,0,0.08);">&nbsp;·&nbsp;CHAMPIONS&nbsp;</span>
+                <span class="outlined-text text-[20vw] md:text-[15vw] px-8">&nbsp;SINCE 2012&nbsp;</span>
+            </div>
+            <!-- Overlay gradient edges -->
+            <div
+                class="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-obsidian to-transparent z-10 pointer-events-none">
+            </div>
+            <div
+                class="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-obsidian to-transparent z-10 pointer-events-none">
+            </div>
+        </div>
+
+        <!-- Heritage Content -->
+        <div class="px-4 md:px-8 lg:px-16 max-w-[1440px] mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div class="reveal-up">
+                <div class="stat-number text-5xl md:text-6xl text-acid mb-3">2012</div>
+                <p class="font-general text-white/30 text-sm leading-relaxed tracking-wide">
+                    Founded in Nadiad with a vision to bring world-class sports equipment to every athlete in Gujarat.
+                </p>
+            </div>
+            <div class="reveal-up">
+                <div class="stat-number text-5xl md:text-6xl text-white mb-3">14+</div>
+                <p class="font-general text-white/30 text-sm leading-relaxed tracking-wide">
+                    Years of unwavering dedication to quality, performance, and the champion mindset.
+                </p>
+            </div>
+            <div class="reveal-up">
+                <div class="stat-number text-5xl md:text-6xl text-white mb-3">∞</div>
+                <p class="font-general text-white/30 text-sm leading-relaxed tracking-wide">
+                    The journey never stops. New brands, new tech, new records — every single season.
+                </p>
             </div>
         </div>
     </section>
-    <footer id="main-footer"></footer>
-    <script src="script.js"></script>
+
+    <!-- ════════════════════════════════════════
+         DIVIDER
+         ════════════════════════════════════════ -->
+    <div class="divider my-4"></div>
+
+    <!-- ════════════════════════════════════════
+         SECTION 4 — CONTACT / FOOTER
+         ════════════════════════════════════════ -->
+    <footer id="contact" class="relative py-24 md:py-40 px-4 md:px-8 lg:px-16">
+        <div class="max-w-[1440px] mx-auto">
+
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-24">
+
+                <!-- Left: CTA -->
+                <div>
+                    <div class="badge-acid mb-6 reveal-up">Get In Touch</div>
+                    <h2
+                        class="font-clash font-bold text-4xl md:text-6xl lg:text-7xl uppercase tracking-tight reveal-up">
+                        Let's<br>
+                        <span class="text-acid">Connect</span>
+                    </h2>
+                    <p
+                        class="font-general text-white/40 text-base md:text-lg max-w-md mt-6 leading-relaxed tracking-wide reveal-up">
+                        Walk in, call up, or drop a message. Your next championship gear is waiting.
+                    </p>
+
+                    <!-- Magnetic WhatsApp Button -->
+                    <div class="mt-10 reveal-up">
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+                            class="magnetic-btn interactive" id="magneticBtn">
+                            <span class="btn-ripple"></span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                            </svg>
+                            <span>WhatsApp Us</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Info -->
+                <div class="flex flex-col justify-end gap-10">
+                    <div class="reveal-up">
+                        <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mb-2">Location</div>
+                        <p class="font-clash font-medium text-lg md:text-xl text-white/80">
+                            11, Vivek Complex<br>Nadiad, Gujarat
+                        </p>
+                    </div>
+                    <div class="reveal-up">
+                        <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mb-2">Hours</div>
+                        <p class="font-clash font-medium text-lg md:text-xl text-white/80">
+                            Mon — Sat &nbsp;·&nbsp; 10 AM — 9 PM
+                        </p>
+                    </div>
+                    <div class="reveal-up">
+                        <div class="font-general text-white/30 text-xs tracking-[0.2em] uppercase mb-2">Follow</div>
+                        <div class="flex items-center gap-4">
+                            <a href="#"
+                                class="font-general text-white/40 hover:text-acid transition-colors duration-300 text-sm tracking-wide interactive">Instagram</a>
+                            <span class="text-white/10">·</span>
+                            <a href="#"
+                                class="font-general text-white/40 hover:text-acid transition-colors duration-300 text-sm tracking-wide interactive">Facebook</a>
+                            <span class="text-white/10">·</span>
+                            <a href="#"
+                                class="font-general text-white/40 hover:text-acid transition-colors duration-300 text-sm tracking-wide interactive">Google</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="divider mb-8"></div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="font-general text-white/15 text-xs tracking-[0.15em]">
+                    © 2026 CHAMPS SPORTS NADIAD. ALL RIGHTS RESERVED.
+                </div>
+                <div class="font-general text-white/15 text-xs tracking-[0.15em]">
+                    DESIGNED WITH PRECISION & PASSION
+                </div>
+            </div>
+
+            <!-- Giant Background Watermark -->
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 font-clash font-bold text-[25vw] uppercase leading-none text-white/[0.015] pointer-events-none select-none whitespace-nowrap">
+                CHAMPS
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ════════════════════════════════════════════════════════════
+         JAVASCRIPT — GSAP ANIMATIONS + INTERACTIONS
+         ════════════════════════════════════════════════════════════ -->
+    <script>
+            (function () {
+                'use strict';
+
+                // ─── Register GSAP Plugins ───
+                gsap.registerPlugin(ScrollTrigger);
+
+                // ═══════════════════════════════════════
+                // PRELOADER
+                // ═══════════════════════════════════════
+                const preloader = document.getElementById('preloader');
+                const preloaderFill = document.getElementById('preloaderFill');
+
+                gsap.to(preloaderFill, {
+                    width: '100%',
+                    duration: 1.8,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        gsap.to(preloader, {
+                            yPercent: -100,
+                            duration: 0.8,
+                            ease: 'power4.inOut',
+                            onComplete: () => {
+                                preloader.style.display = 'none';
+                                initAnimations();
+                            }
+                        });
+                    }
+                });
+
+                // ═══════════════════════════════════════
+                // SMOOTH SCROLL (Lightweight Approach)
+                // ═══════════════════════════════════════
+                let currentScroll = 0;
+                let targetScroll = 0;
+                const scrollEase = 0.08;
+                let isSmooth = window.innerWidth > 768;
+
+                if (isSmooth) {
+                    document.body.style.height = document.documentElement.scrollHeight + 'px';
+
+                    // Recalculate height on resize
+                    window.addEventListener('resize', () => {
+                        document.body.style.height = document.documentElement.scrollHeight + 'px';
+                    });
+                }
+
+                // Anchor scroll for nav
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            window.scrollTo({
+                                top: target.offsetTop,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+
+                // ═══════════════════════════════════════
+                // CUSTOM CURSOR
+                // ═══════════════════════════════════════
+                const cursorDot = document.getElementById('cursorDot');
+                const cursorTrail = document.getElementById('cursorTrail');
+                let mouseX = 0, mouseY = 0;
+                let trailX = 0, trailY = 0;
+
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+
+                    // Immediate update for the dot (liquid feel)
+                    gsap.to(cursorDot, {
+                        x: mouseX,
+                        y: mouseY,
+                        duration: 0.15,
+                        ease: 'power2.out'
+                    });
+                });
+
+                // Trail follows with delay
+                function animateTrail() {
+                    trailX += (mouseX - trailX) * 0.12;
+                    trailY += (mouseY - trailY) * 0.12;
+                    cursorTrail.style.left = trailX + 'px';
+                    cursorTrail.style.top = trailY + 'px';
+                    requestAnimationFrame(animateTrail);
+                }
+                animateTrail();
+
+                // Expand cursor on interactive elements
+                document.querySelectorAll('.interactive, a, button').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursorDot.classList.add('expand');
+                        cursorTrail.classList.add('expand');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursorDot.classList.remove('expand');
+                        cursorTrail.classList.remove('expand');
+                    });
+                });
+
+                // ═══════════════════════════════════════
+                // BENTO CARD MOUSE GLOW TRACKING
+                // ═══════════════════════════════════════
+                document.querySelectorAll('.glass-card').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = ((e.clientX - rect.left) / rect.width) * 100;
+                        const y = ((e.clientY - rect.top) / rect.height) * 100;
+                        card.style.setProperty('--mouse-x', x + '%');
+                        card.style.setProperty('--mouse-y', y + '%');
+                    });
+                });
+
+                // ═══════════════════════════════════════
+                // MAGNETIC BUTTON EFFECT
+                // ═══════════════════════════════════════
+                const magneticBtn = document.getElementById('magneticBtn');
+                if (magneticBtn) {
+                    magneticBtn.addEventListener('mousemove', (e) => {
+                        const rect = magneticBtn.getBoundingClientRect();
+                        const x = e.clientX - rect.left - rect.width / 2;
+                        const y = e.clientY - rect.top - rect.height / 2;
+                        gsap.to(magneticBtn, {
+                            x: x * 0.3,
+                            y: y * 0.3,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                    });
+                    magneticBtn.addEventListener('mouseleave', () => {
+                        gsap.to(magneticBtn, {
+                            x: 0,
+                            y: 0,
+                            duration: 0.7,
+                            ease: 'elastic.out(1, 0.3)'
+                        });
+                    });
+                }
+
+                // ═══════════════════════════════════════
+                // MAIN ANIMATION INIT
+                // ═══════════════════════════════════════
+                function initAnimations() {
+
+                    // ─── Hero Letter Entrance ───
+                    const heroLetters = document.querySelectorAll('.hero-letter');
+                    gsap.fromTo(heroLetters, {
+                        y: 120,
+                        opacity: 0,
+                        rotateX: -80,
+                    }, {
+                        y: 0,
+                        opacity: 1,
+                        rotateX: 0,
+                        duration: 1.2,
+                        ease: 'power4.out',
+                        stagger: 0.08,
+                        delay: 0.2
+                    });
+
+                    // ─── Hero Badge ───
+                    gsap.to('#heroBadge', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        delay: 1
+                    });
+
+                    // ─── Hero Subtitle ───
+                    gsap.to('#heroSub', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        delay: 1.2
+                    });
+
+                    // ─── Hero Stats ───
+                    gsap.to('#heroStats', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        delay: 1.4
+                    });
+
+                    // ─── Counter Animation ───
+                    document.querySelectorAll('[data-count]').forEach(counter => {
+                        const target = parseInt(counter.dataset.count);
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 2.5,
+                            delay: 1.6,
+                            ease: 'power2.out',
+                            onUpdate: () => {
+                                counter.textContent = target >= 1000
+                                    ? Math.floor(obj.val).toLocaleString() + '+'
+                                    : Math.floor(obj.val) + '+';
+                            }
+                        });
+                    });
+
+                    // ─── Slide-Up Reveal for All .reveal-up ───
+                    document.querySelectorAll('.reveal-up').forEach(el => {
+                        // Skip hero elements (already animated)
+                        if (el.closest('#hero')) return;
+
+                        gsap.to(el, {
+                            scrollTrigger: {
+                                trigger: el,
+                                start: 'top 88%',
+                                end: 'top 60%',
+                                toggleActions: 'play none none none'
+                            },
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: 'power3.out'
+                        });
+                    });
+
+                    // ─── Bento Card Reveal ───
+                    document.querySelectorAll('.reveal-scale').forEach((card, i) => {
+                        gsap.to(card, {
+                            scrollTrigger: {
+                                trigger: card,
+                                start: 'top 90%',
+                                toggleActions: 'play none none none'
+                            },
+                            opacity: 1,
+                            scale: 1,
+                            duration: 1,
+                            delay: i * 0.15,
+                            ease: 'power3.out'
+                        });
+                    });
+
+                    // ─── Heritage Horizontal Scroll ───
+                    const heritageTrack = document.getElementById('heritageTrack');
+                    if (heritageTrack) {
+                        const totalWidth = heritageTrack.scrollWidth;
+                        const viewWidth = window.innerWidth;
+
+                        gsap.to(heritageTrack, {
+                            x: -(totalWidth - viewWidth),
+                            ease: 'none',
+                            scrollTrigger: {
+                                trigger: '#heritageScroll',
+                                start: 'top 70%',
+                                end: 'bottom 30%',
+                                scrub: 1,
+                            }
+                        });
+                    }
+
+                    // ─── Nav Hide/Show on Scroll ───
+                    const mainNav = document.getElementById('mainNav');
+                    let lastScrollTop = 0;
+
+                    ScrollTrigger.create({
+                        start: 'top -80',
+                        end: 99999,
+                        onUpdate: (self) => {
+                            const direction = self.direction;
+                            if (direction === 1) {
+                                gsap.to(mainNav, { y: -100, opacity: 0, duration: 0.3, ease: 'power2.out' });
+                            } else {
+                                gsap.to(mainNav, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+                            }
+                        }
+                    });
+
+                    // ─── Parallax Subtle on Hero ───
+                    gsap.to('#heroTitle', {
+                        scrollTrigger: {
+                            trigger: '#hero',
+                            start: 'top top',
+                            end: 'bottom top',
+                            scrub: true
+                        },
+                        y: 150,
+                        opacity: 0.2,
+                        ease: 'none'
+                    });
+                }
+
+            })();
+    </script>
+
 </body>
 
 </html>
