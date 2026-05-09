@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Exhibitions - THYRA Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .events-hero {
+            height: 350px;
+            background: linear-gradient(rgba(0, 34, 68, 0.8), rgba(0, 34, 68, 0.8)), url('./assets/images/event_expo_1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .year-filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .year-btn {
+            padding: 10px 30px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .year-btn.active, .year-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 20px 5%;
+            max-width: 1300px;
+            margin: 0 auto 80px;
+        }
+
+        .event-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .event-img-container {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .event-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .event-card:hover .event-img-container img {
+            transform: scale(1.1);
+        }
+
+        .event-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .event-info {
+            padding: 25px;
+        }
+
+        .event-info h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .event-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .event-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-meta-item i {
+            color: var(--accent);
+            width: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img style="width: 20%;" src="./assets/images/logo.jpg" />
+            </a>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu">
+                <div class="close-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+
+                <li class="nav-item">
+                    <a href="./product-detail.html?id=ms10" class="nav-link">Products <i class="fas fa-angle-down"
+                            style="font-size:10px; margin-left:5px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="./product-detail.html?id=ms10">MS10 Series Solar VFD</a></li>
+                        <li><a href="./product-detail.html?id=ms20">MS20 Series Solar VFD</a></li>
+                        <li><a href="./product-detail.html?id=pcb">Solar PCB Card</a></li>
+                        <li><a href="./product-detail.html?id=cte">CTE Economy Model</a></li>
+                        <li><a href="./product-detail.html?id=ct10m">CT10M General Drive</a></li>
+                        <li><a href="./product-detail.html?id=elevator">CT30L Elevator Drive</a></li>
+                        <li><a href="./product-detail.html?id=plc">PLC (Programmable Logic)</a></li>
+                        <li><a href="./product-detail.html?id=hmi">HMI (Touch Screen)</a></li>
+                        <li><a href="./product-detail.html?id=rms">RMS 4G Device</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <li class="nav-item"><a href="events.html" class="nav-link active">Events</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn-quote desktop-only" style="margin-left: 20px;">Get a Quote</a>
+        </div>
+    </header>
+
+    <section class="events-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem; margin-bottom: 10px;">Events & Exhibitions</h1>
+            <p style="font-size: 1.2rem; opacity: 0.9;">Showcasing Innovation Across the Nation</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="year-filters" id="year-filters">
+            <button class="year-btn active" data-year="all">All Events</button>
+            <button class="year-btn" data-year="2025">2025</button>
+            <button class="year-btn" data-year="2024">2024</button>
+            <button class="year-btn" data-year="2023">2023</button>
+            <button class="year-btn" data-year="2022">2022</button>
+        </div>
+
+        <div class="events-grid" id="events-grid">
+            <!-- Events will be populated here by JS -->
+        </div>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <script src="script.js"></script>
+    <script>
+        const eventsData = [
+            // 2025 Events
+            {
+                id: 'e25-1',
+                year: 2025,
+                title: "Automation India Expo 2025",
+                location: "BEC, Mumbai, Maharashtra",
+                date: "August 21-24, 2025",
+                image: "./assets/images/event_expo_1.png",
+                type: "Previous"
+            },
+            {
+                id: 'e25-2',
+                year: 2025,
+                title: "Renewable Energy India (REI) Expo 2025",
+                location: "India Expo Mart, Greater Noida",
+                date: "October 03-05, 2025",
+                image: "./assets/images/event_expo_2.png",
+                type: "Previous"
+            },
+            {
+                id: 'e25-3',
+                year: 2025,
+                title: "Smart Manufacturing Summit 2025",
+                location: "BIEC, Bangalore, Karnataka",
+                date: "November 12-14, 2025",
+                image: "./assets/images/event_expo_3.png",
+                type: "Previous"
+            },
+            // 2024 Events
+            {
+                id: 'e24-1',
+                year: 2024,
+                title: "Solar South 2024",
+                location: "CTC, Chennai, Tamil Nadu",
+                date: "February 08-10, 2024",
+                image: "./assets/images/event_expo_2.png",
+                type: "Previous"
+            },
+            {
+                id: 'e24-2',
+                year: 2024,
+                title: "Industrial Automation & Robotics Show",
+                location: "Auto Cluster, Pune, Maharashtra",
+                date: "May 15-17, 2024",
+                image: "./assets/images/event_expo_4.png",
+                type: "Previous"
+            },
+            {
+                id: 'e24-3',
+                year: 2024,
+                title: "Agri-Tech India 2024",
+                location: "HITEX, Hyderabad, Telangana",
+                date: "September 02-04, 2024",
+                image: "./assets/images/event_expo_1.png",
+                type: "Previous"
+            },
+            // 2023 Events
+            {
+                id: 'e23-1',
+                year: 2023,
+                title: "Water Expo 2023",
+                location: "AES Ground, Ahmedabad, Gujarat",
+                date: "January 20-22, 2023",
+                image: "./assets/images/event_expo_2.png",
+                type: "Previous"
+            },
+            {
+                id: 'e23-2',
+                year: 2023,
+                title: "PlastIndia 2023",
+                location: "Pragati Maidan, New Delhi",
+                date: "February 01-05, 2023",
+                image: "./assets/images/event_expo_3.png",
+                type: "Previous"
+            },
+            {
+                id: 'e23-3',
+                year: 2023,
+                title: "Engimach 2023",
+                location: "Helipad Exhibition Centre, Gandhinagar",
+                date: "December 06-10, 2023",
+                image: "./assets/images/event_expo_4.png",
+                type: "Previous"
+            },
+            // 2022 Events
+            {
+                id: 'e22-1',
+                year: 2022,
+                title: "Intersolar India 2022",
+                location: "Helipad Exhibition Centre, Gandhinagar",
+                date: "December 07-09, 2022",
+                image: "./assets/images/event_expo_2.png",
+                type: "Previous"
+            },
+            {
+                id: 'e22-2',
+                year: 2022,
+                title: "IREE 2022 - Railway Equipment Exhibition",
+                location: "Pragati Maidan, New Delhi",
+                date: "October 12-14, 2022",
+                image: "./assets/images/event_expo_1.png",
+                type: "Previous"
+            },
+            {
+                id: 'e22-3',
+                year: 2022,
+                title: "South Pack 2022",
+                location: "BIEC, Bangalore, Karnataka",
+                date: "June 23-25, 2022",
+                image: "./assets/images/event_expo_3.png",
+                type: "Previous"
+            }
+        ];
+
+        function renderEvents(filterYear = 'all') {
+            const grid = document.getElementById('events-grid');
+            grid.innerHTML = '';
+
+            const filteredEvents = filterYear === 'all' 
+                ? eventsData 
+                : eventsData.filter(e => e.year.toString() === filterYear);
+
+            filteredEvents.forEach(event => {
+                const card = `
+                    <a href="event-detail.html?id=${event.id}" class="event-card">
+                        <div class="event-img-container">
+                            <span class="event-badge">${event.type}</span>
+                            <img src="${event.image}" alt="${event.title}">
+                        </div>
+                        <div class="event-info">
+                            <h3>${event.title}</h3>
+                            <div class="event-meta">
+                                <div class="event-meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>${event.location}</span>
+                                </div>
+                                <div class="event-meta-item">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span>${event.date}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // Year Filtering Logic
+        document.getElementById('year-filters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('year-btn')) {
+                document.querySelectorAll('.year-btn').forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                renderEvents(e.target.dataset.year);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEvents();
+            
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('main-footer').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+
+</html>

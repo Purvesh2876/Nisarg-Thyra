@@ -229,6 +229,16 @@
             background-color: #ffe0b2;
         }
 
+        .btn-software {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+
+        .btn-software:hover {
+            background-color: #c8e6c9;
+        }
+
         /* Tabs */
         .details-tabs {
             margin-top: 40px;
@@ -331,7 +341,7 @@
                     </ul>
                 </li>
                 <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
-                <!-- <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li> -->
+                <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
             </ul>
@@ -382,6 +392,9 @@
                 <a id="btn-manual" href="#" target="_blank" class="doc-btn btn-manual">
                     <i class="fas fa-book"></i> Download Manual
                 </a>
+                <a id="btn-software" href="https://drive.google.com/file/d/1DPCcbU7n9QJ7DhpzU85OS5h_dLQJ7gr1/view?usp=drive_link" target="_blank" class="doc-btn btn-software" style="display:none;">
+                    <i class="fas fa-download"></i> Download Software
+                </a>
             </div>
 
             <div class="details-tabs">
@@ -410,7 +423,7 @@
             'ms10': {
                 name: "MS10 Series Solar VFD",
                 category: "Solar Solutions",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=80",
+                image: "./assets/images/ms10image.png",
                 desc: "The THYRA MS10 Series is a high-efficiency Solar VFD designed to make full use of solar energy for agricultural irrigation, water supply, and fountains. Featuring the best MPPT algorithm with >99.5% efficiency, it supports automatic sleep/wake functions based on sunlight intensity and works with AM, PMSM, and BLDC motors.",
                 features: [
                     "Best MPPT Algorithm (Efficiency > 99.5%)",
@@ -497,7 +510,7 @@
             'ip65': {
                 name: "IP65 Solar Pump Controller",
                 category: "Solar Solutions",
-                image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=500&q=80", // add image in assets
+                image: "./assets/images/ms10image.png", // add image in assets
                 desc: "THYRA IP65 Solar Pump Controller is a high-efficiency outdoor-rated solar drive solution designed for harsh environmental conditions. It integrates advanced MPPT technology, smart protection features, and dual power compatibility for agricultural and water pumping applications.",
                 features: [
                     "IP65 Protection – Dust & Water Resistant",
@@ -827,12 +840,16 @@
                         btnCatalogue.href = `./assets/${activeId}catalogue.pdf`;
                     }
 
-                    // HMI: Hide Manual, Show Catalogue
+                    const btnSoftware = document.getElementById('btn-software');
+
+                    // HMI: Hide Manual, Show Software Download
                     if (activeId === 'hmi') {
                         btnManual.style.display = 'none';
+                        btnSoftware.style.display = 'inline-flex';
                     }
-                    // Others: Show Manual
+                    // Others: Show Manual, Hide Software
                     else {
+                        btnSoftware.style.display = 'none';
                         btnManual.style.display = 'inline-flex';
                         // btnManual.href = `./assets/${activeId}manual.pdf`;
                         // CT30L special manual

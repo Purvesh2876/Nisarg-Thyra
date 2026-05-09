@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details - THYRA Automation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .event-detail-hero {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .event-detail-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 34, 68, 0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 20px;
+        }
+
+        .event-main-content {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .event-grid-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .event-desc h2 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-left: 5px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .event-desc p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 12px;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-card h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .info-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-list li {
+            display: flex;
+            gap: 15px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .info-list li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 3px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent);
+        }
+
+        .highlight-card h5 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 900px) {
+            .event-grid-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img style="width: 20%;" src="./assets/images/logo.jpg" />
+            </a>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu">
+                <div class="close-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+
+                <li class="nav-item">
+                    <a href="./product-detail.html?id=ms10" class="nav-link">Products <i class="fas fa-angle-down"
+                            style="font-size:10px; margin-left:5px;"></i></a>
+                    <ul class="dropdown">
+                        <li><a href="./product-detail.html?id=ms10">MS10 Series Solar VFD</a></li>
+                        <li><a href="./product-detail.html?id=ms20">MS20 Series Solar VFD</a></li>
+                        <li><a href="./product-detail.html?id=pcb">Solar PCB Card</a></li>
+                        <li><a href="./product-detail.html?id=cte">CTE Economy Model</a></li>
+                        <li><a href="./product-detail.html?id=ct10m">CT10M General Drive</a></li>
+                        <li><a href="./product-detail.html?id=elevator">CT30L Elevator Drive</a></li>
+                        <li><a href="./product-detail.html?id=plc">PLC (Programmable Logic)</a></li>
+                        <li><a href="./product-detail.html?id=hmi">HMI (Touch Screen)</a></li>
+                        <li><a href="./product-detail.html?id=rms">RMS 4G Device</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item"><a href="solutions.html" class="nav-link">Solutions</a></li>
+                <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+            </ul>
+
+            <a href="contact.html" class="btn-quote desktop-only" style="margin-left: 20px;">Get a Quote</a>
+        </div>
+    </header>
+
+    <div id="event-hero" class="event-detail-hero">
+        <div class="hero-content">
+            <h1 id="event-title" style="font-size: 3rem; margin-bottom: 20px;">Loading Event...</h1>
+            <p id="event-subtitle" style="font-size: 1.3rem; opacity: 0.9;"></p>
+        </div>
+    </div>
+
+    <section class="event-main-content">
+        <div class="event-grid-info">
+            <div class="event-desc">
+                <h2>Event Overview</h2>
+                <div id="event-long-desc">
+                    <!-- Dynamic Content -->
+                </div>
+
+                <h2 style="margin-top: 60px;">Key Highlights</h2>
+                <div class="highlight-grid" id="highlights-grid">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+
+            <div class="event-sidebar">
+                <div class="sidebar-card">
+                    <h4>Event Information</h4>
+                    <ul class="info-list">
+                        <li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <strong>Date</strong><br>
+                                <span id="info-date"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Venue</strong><br>
+                                <span id="info-location"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-tag"></i>
+                            <div>
+                                <strong>Category</strong><br>
+                                <span id="info-category"></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="btn-quote" style="display:block; text-align:center; margin-top:30px; background:var(--primary); color:white;">Inquire About Next Event</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="main-footer"></footer>
+
+    <script src="script.js"></script>
+    <script>
+        const eventsData = {
+            'e25-1': {
+                title: "Automation India Expo 2025",
+                subtitle: "The Largest South Asian Exhibition for Industrial Automation",
+                location: "BEC, Mumbai, Maharashtra",
+                date: "August 21-24, 2025",
+                image: "./assets/images/event_expo_1.png",
+                category: "Industrial Expo",
+                desc: "THYRA participated in the Automation India Expo 2025, showcasing our latest range of CT Series VFDs and advanced PLC solutions. Our booth attracted over 500 visitors, including key decision-makers from the manufacturing and textile industries. We demonstrated real-time energy savings using our specialized drive algorithms.",
+                highlights: [
+                    { title: "Live Product Demos", text: "Interactive demonstrations of our MS20 Series Solar VFDs in simulated low-light conditions." },
+                    { title: "Technical Seminars", text: "Our lead engineers hosted a workshop on 'The Future of Motion Control in Indian Manufacturing'." },
+                    { title: "Networking", text: "Connected with over 50 potential distributors across Western India." }
+                ]
+            },
+            'e25-2': {
+                title: "Renewable Energy India (REI) Expo 2025",
+                subtitle: "Pioneering Sustainable Energy Solutions",
+                location: "India Expo Mart, Greater Noida",
+                date: "October 03-05, 2025",
+                image: "./assets/images/event_expo_2.png",
+                category: "Solar & Green Tech",
+                desc: "At REI Expo 2025, THYRA unveiled its next-generation Solar PCB Cards and high-efficiency MPPT controllers. We focused on the agricultural sector, presenting affordable solar pumping solutions that empower rural Indian farmers.",
+                highlights: [
+                    { title: "New Product Launch", text: "Unveiled the 'Thyra Eco-Solar' series for small-scale irrigation." },
+                    { title: "Green Awards", text: "Nominated for the 'Innovation in Rural Electrification' category." },
+                    { title: "B2B Meetings", text: "Signed 5 MoUs with solar EPC companies for nationwide distribution." }
+                ]
+            },
+            'e25-3': {
+                title: "Smart Manufacturing Summit 2025",
+                subtitle: "Industry 4.0 and the Digital Transformation",
+                location: "BIEC, Bangalore, Karnataka",
+                date: "November 12-14, 2025",
+                image: "./assets/images/event_expo_3.png",
+                category: "Industry 4.0",
+                desc: "The Smart Manufacturing Summit was a great platform for THYRA to showcase its RMS 4G devices and HMI interfaces. We demonstrated how IoT-enabled drives can drastically reduce downtime through predictive maintenance.",
+                highlights: [
+                    { title: "IoT Integration", text: "Showcased remote monitoring of VFDs from a smartphone via our 4G RMS device." },
+                    { title: "Expert Panel", text: "THYRA CEO participated in a panel discussion on 'Localizing Industry 4.0'." },
+                    { title: "Tech Zone", text: "Featured in the 'Innovation Zone' for our high-speed communication protocols." }
+                ]
+            },
+             'e24-1': {
+                title: "Solar South 2024",
+                subtitle: "Powering the Southern States with Clean Energy",
+                location: "CTC, Chennai, Tamil Nadu",
+                date: "February 08-10, 2024",
+                image: "./assets/images/event_expo_2.png",
+                category: "Solar Energy",
+                desc: "Solar South 2024 was a major event for our Southern India expansion. We displayed our MS10 Series drives which are highly popular for domestic and agricultural solar setups in Tamil Nadu and Andhra Pradesh.",
+                highlights: [
+                    { title: "Regional Presence", text: "Established 3 new service centers in the South region." },
+                    { title: "Farmer Outreach", text: "Conducted live demos specifically for agricultural solar pump sets." },
+                    { title: "Efficiency Testing", text: "Publicly tested our drives against competitors, showing 15% better performance." }
+                ]
+            },
+            'e24-2': {
+                title: "Industrial Automation & Robotics Show",
+                subtitle: "Revolutionizing the Shop Floor",
+                location: "Auto Cluster, Pune, Maharashtra",
+                date: "May 15-17, 2024",
+                image: "./assets/images/event_expo_4.png",
+                category: "Automation & Robotics",
+                desc: "Pune being an auto hub, this show was crucial for our CT30M series. We showcased heavy-duty drives that are now being used in major automotive assembly lines.",
+                highlights: [
+                    { title: "Heavy Duty Solutions", text: "Focused on high-torque applications for metal pressing and welding." },
+                    { title: "Custom Logic", text: "Demonstrated how our PLCs can be customized for complex robotic tasks." },
+                    { title: "Local Partnership", text: "Collaborated with Pune-based robotics startups for joint solutions." }
+                ]
+            },
+            'e24-3': {
+                title: "Agri-Tech India 2024",
+                subtitle: "Modernizing Indian Agriculture",
+                location: "HITEX, Hyderabad, Telangana",
+                date: "September 02-04, 2024",
+                image: "./assets/images/event_expo_1.png",
+                category: "Agri-Technology",
+                desc: "At Agri-Tech Hyderabad, we focused on the 'Smart Farm' concept. Our solar drives were the highlight, showing how automation can make irrigation effortless and energy-free.",
+                highlights: [
+                    { title: "Smart Irrigation", text: "Integrated soil moisture sensors with our VFDs for auto-pumping." },
+                    { title: "Rural Training", text: "Provided training to over 200 local technicians on solar drive maintenance." },
+                    { title: "Exhibition Award", text: "Won 'Best Technology Stall' in the Agri-Power category." }
+                ]
+            },
+            'e23-1': {
+                title: "Water Expo 2023",
+                subtitle: "Sustainable Water Management",
+                location: "AES Ground, Ahmedabad, Gujarat",
+                date: "January 20-22, 2023",
+                image: "./assets/images/event_expo_2.png",
+                category: "Water Treatment",
+                desc: "As a Gujarat-based brand, the Ahmedabad Water Expo was like playing at home. We showcased our multi-pump control logic which is now a standard in local municipal water works.",
+                highlights: [
+                    { title: "Multi-Pump Logic", text: "Demonstrated 4-pump synchronization for constant pressure supply." },
+                    { title: "Local Support", text: "Emphasized our 24/7 support availability across Gujarat." },
+                    { title: "Case Studies", text: "Presented successful implementations in nearby textile industrial zones." }
+                ]
+            },
+            'e23-2': {
+                title: "PlastIndia 2023",
+                subtitle: "Innovation in Plastics Processing",
+                location: "Pragati Maidan, New Delhi",
+                date: "February 01-05, 2023",
+                image: "./assets/images/event_expo_3.png",
+                category: "Plastic Industry",
+                desc: "PlastIndia is a global platform. We showcased how our high-precision drives can improve quality in injection molding and extrusion processes, saving up to 30% energy.",
+                highlights: [
+                    { title: "Precision Control", text: "Showcased micro-second response times for molding accuracy." },
+                    { title: "Energy Audit", text: "Offered free on-site energy audits for plastic manufacturers." },
+                    { title: "International Interest", text: "Received inquiries from over 10 different countries." }
+                ]
+            },
+            'e23-3': {
+                title: "Engimach 2023",
+                subtitle: "The Machine Tool Extravaganza",
+                location: "Helipad Exhibition Centre, Gandhinagar",
+                date: "December 06-10, 2023",
+                image: "./assets/images/event_expo_4.png",
+                category: "Machine Tools",
+                desc: "Engimach was the perfect stage for our CT30L Elevator drives and CT10M General Purpose drives. We focused on the booming infrastructure and construction sector in India.",
+                highlights: [
+                    { title: "Elevator Tech", text: "Live demonstration of smooth S-curve acceleration in elevator drives." },
+                    { title: "Make In India", text: "Promoted our local manufacturing capabilities and fast delivery times." },
+                    { title: "Distributor Meet", text: "Held a nationwide distributor meet during the event." }
+                ]
+            },
+            'e22-1': {
+                title: "Intersolar India 2022",
+                subtitle: "Accelerating the Solar Revolution",
+                location: "Helipad Exhibition Centre, Gandhinagar",
+                date: "December 07-09, 2022",
+                image: "./assets/images/event_expo_2.png",
+                category: "Solar Tech",
+                desc: "One of our first major appearances. Intersolar 2022 was where the THYRA solar brand really took off. We introduced the concept of 'Hybrid Solar Pumping' to the mass market.",
+                highlights: [
+                    { title: "Hybrid Innovation", text: "First public demo of seamless switching between solar and grid power." },
+                    { title: "Brand Launch", text: "Successfully launched the MS Series brand identity." },
+                    { title: "Mass Adoption", text: "Signed several high-volume contracts with government agencies." }
+                ]
+            },
+            'e22-2': {
+                title: "IREE 2022",
+                subtitle: "Modernizing the Indian Railways",
+                location: "Pragati Maidan, New Delhi",
+                date: "October 12-14, 2022",
+                image: "./assets/images/event_expo_1.png",
+                category: "Railway Tech",
+                desc: "Participation in IREE allowed us to explore the railway sector. We showcased specialized drives that meet the high safety and reliability standards of railway infrastructure.",
+                highlights: [
+                    { title: "Safety Standards", text: "Showcased drives with SIL3 safety certification compatibility." },
+                    { title: "Rugged Design", text: "Demonstrated vibration-proof and dust-proof drive cabinets." },
+                    { title: "Infrastructure", text: "Focused on station ventilation and heavy-duty hoist control." }
+                ]
+            },
+            'e22-3': {
+                title: "South Pack 2022",
+                subtitle: "Packaging Solutions for the Future",
+                location: "BIEC, Bangalore, Karnataka",
+                date: "June 23-25, 2022",
+                image: "./assets/images/event_expo_3.png",
+                category: "Packaging",
+                desc: "At South Pack, we addressed the needs of the food and pharma packaging industries. Our servo synchronization solutions were a big hit for high-speed labeling and filling lines.",
+                highlights: [
+                    { title: "Servo Sync", text: "Demonstrated 12-axis synchronization for high-speed packaging." },
+                    { title: "Pharma Focus", text: "Ensured compliance with clean-room standards for electronics." },
+                    { title: "Compact Drives", text: "Showcased our book-style drives that save space in control panels." }
+                ]
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const eventId = params.get('id');
+            const data = eventsData[eventId];
+
+            if (data) {
+                document.title = `${data.title} - THYRA Events`;
+                document.getElementById('event-title').innerText = data.title;
+                document.getElementById('event-subtitle').innerText = data.subtitle;
+                document.getElementById('event-hero').style.backgroundImage = `url('${data.image}')`;
+                document.getElementById('event-long-desc').innerHTML = `<p>${data.desc}</p>`;
+
+                document.getElementById('info-date').innerText = data.date;
+                document.getElementById('info-location').innerText = data.location;
+                document.getElementById('info-category').innerText = data.category;
+
+                const highlightsContainer = document.getElementById('highlights-grid');
+                highlightsContainer.innerHTML = data.highlights.map(h => `
+                    <div class="highlight-card">
+                        <h5>${h.title}</h5>
+                        <p>${h.text}</p>
+                    </div>
+                `).join('');
+            } else {
+                document.querySelector('.event-main-content').innerHTML = '<h2>Event not found.</h2><a href="events.html">Back to Events</a>';
+            }
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('main-footer').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+
+</html>

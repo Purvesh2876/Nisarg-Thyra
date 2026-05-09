@@ -284,7 +284,7 @@
                 </li>
 
                 <li class="nav-item"><a href="solutions.html" class="nav-link active">Solutions</a></li>
-                <!-- <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li> -->
+                <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
             </ul>
@@ -329,6 +329,9 @@
                     <div class="sidebar-header">All Solutions</div>
                     <div class="sidebar-links" id="sidebar-links-container">
                         <a href="solution-detail.html?type=solar" data-type="solar">Solar Pumping</a>
+                        <a href="solution-detail.html?type=floor-mill" data-type="floor-mill">Floor Mill</a>
+                        <a href="solution-detail.html?type=expeller" data-type="expeller">Expeller</a>
+                        <a href="solution-detail.html?type=cold-storage" data-type="cold-storage">Cold Storage</a>
                         <a href="solution-detail.html?type=compressor" data-type="compressor">Air Compressor</a>
                         <a href="solution-detail.html?type=crane" data-type="crane">Crane & Hoist</a>
                         <a href="solution-detail.html?type=machine-tools" data-type="machine-tools">Machine Tools</a>
@@ -377,77 +380,46 @@
                     { title: "Dry Run Protection", desc: "Intelligent sensors prevent pump damage when water is low." },
                     { title: "Remote Monitoring (RMS)", desc: "Track pump performance via mobile app anywhere in India." }
                 ],
-                apps: ["Agricultural Irrigation", "Remote Village Water Supply", "Livestock Watering", "Desert Reclamation Projects"],
-                products: [
-                    {
-                        name: "Floor Mill (Atta Chakki)",
-                        image: "./assets/images/solar_floormill.png",
-                        description: `THYRA SOLAR DRIVE is a specialized solution designed to efficiently operate flour mill motors using solar power. Engineered for performance and reliability, our drives ensure smooth and consistent motor operation even in areas with unstable or no grid electricity.
-
-Our solar drive technology enables direct utilization of solar energy to run flour mill motors, reducing dependency on conventional electricity and significantly lowering operating costs. It is an ideal solution for rural, semi-urban, and off-grid locations.`,
-                        features: [
-                            "Efficient motor control using solar power",
-                            "Compatible with various flour mill motors",
-                            "Stable performance under varying solar conditions",
-                            "Energy-saving and cost-effective operation",
-                            "Robust design for long-term durability",
-                            "Easy integration with solar panel systems"
-                        ],
-                        applications: [
-                            "Solar-powered flour mills (Atta Chakki)",
-                            "Grain processing units in rural and remote areas",
-                            "Small and medium-scale milling businesses",
-                            "Agro-processing industries"
-                        ],
-                        whyChoose: "At THYRA DRIVES, we focus on delivering advanced drive solutions that combine innovation with sustainability. Our solar drives are designed to maximize efficiency, ensure reliable motor performance, and support the growing demand for clean energy in the flour milling industry."
-                    },
-                    {
-                        name: "Expeller",
-                        image: "./assets/images/solar_expeller.png",
-                        description: `THYRA SOLAR DRIVE is a high-performance drive system specially designed to operate expeller mill motors using solar power. Engineered for efficiency and durability, it ensures smooth and reliable motor performance while reducing dependency on conventional electricity.
-
-Our solution is ideal for modern agro-processing industries looking to lower operating costs and adopt sustainable energy solutions.
-
-With rising energy costs and increasing demand for eco-friendly operations, THYRA SOLAR DRIVE enables expeller mills to run efficiently on solar energy. It helps businesses achieve long-term savings while maintaining consistent production output.`,
-                        features: [
-                            "Operates expeller mill motors directly through solar power",
-                            "Stable performance under varying sunlight conditions",
-                            "Energy-efficient and cost-saving solution",
-                            "Durable and industrial-grade design",
-                            "Low maintenance and long operational life",
-                            "Compatible with multiple motor capacities"
-                        ],
-                        applications: [
-                            "Oil expeller mills (groundnut, mustard, sesame, etc.)",
-                            "Agro-processing industries",
-                            "Rural and semi-urban production units",
-                            "Small and medium-scale industrial setups"
-                        ],
-                        whyChoose: "At THYRA DRIVES, we are committed to delivering innovative and reliable drive solutions for industrial applications. Our focus on quality, performance, and customer satisfaction makes us a trusted partner in the solar-powered machinery segment."
-                    },
-                    {
-                        name: "Cold Storage",
-                        image: "./assets/images/solar_cold_storage.png",
-                        description: `THYRA SOLAR DRIVE is a high-performance drive system designed to efficiently operate compressor motors in cold storage facilities using solar power. Engineered for reliability and precision, it ensures continuous and stable performance—critical for temperature-sensitive storage applications.
-
-Cold storage operations require uninterrupted power for compressors. THYRA SOLAR DRIVE enables seamless utilization of solar energy to run compressor motors, significantly reducing electricity costs while maintaining consistent cooling performance.`,
-                        features: [
-                            "Efficient operation of compressor motors through solar power",
-                            "Stable and consistent performance for continuous cooling",
-                            "Reduces dependency on grid electricity and diesel generators",
-                            "Energy-saving and cost-effective solution",
-                            "Heavy-duty design for industrial applications",
-                            "Low maintenance and long service life"
-                        ],
-                        applications: [
-                            "Cold storage warehouses",
-                            "Food and agricultural storage units",
-                            "Dairy and pharmaceutical storage",
-                            "Refrigeration systems in rural and semi-urban areas"
-                        ],
-                        whyChoose: "At THYRA DRIVES, we deliver innovative solar drive solutions designed for demanding industrial applications. Our focus on performance, durability, and customer satisfaction makes us a trusted partner in energy-efficient technologies."
-                    }
-                ]
+                apps: ["Agricultural Irrigation", "Remote Village Water Supply", "Livestock Watering", "Desert Reclamation Projects"]
+            },
+            'floor-mill': {
+                title: "Solar Floor Mill (Atta Chakki)",
+                subtitle: "Solar-Powered Drive Solutions for Flour Milling",
+                image: "./assets/images/floormill_image.png",
+                overview: "THYRA SOLAR DRIVE is a specialized solution designed to efficiently operate flour mill motors using solar power. Engineered for performance and reliability, our drives ensure smooth and consistent motor operation even in areas with unstable or no grid electricity. Our solar drive technology enables direct utilization of solar energy to run flour mill motors, reducing dependency on conventional electricity and significantly lowering operating costs. It is an ideal solution for rural, semi-urban, and off-grid locations.",
+                benefits: [
+                    { title: "Efficient Solar Motor Control", desc: "Directly operates flour mill motors using solar power for smooth, consistent performance." },
+                    { title: "Wide Motor Compatibility", desc: "Compatible with various flour mill motor types and capacities." },
+                    { title: "Stable Solar Performance", desc: "Consistent and reliable operation even under varying sunlight conditions." },
+                    { title: "Energy Cost Savings", desc: "Significantly lowers operating costs by eliminating dependency on grid electricity." }
+                ],
+                apps: ["Solar-powered flour mills (Atta Chakki)", "Grain processing units in rural and remote areas", "Small and medium-scale milling businesses", "Agro-processing industries"]
+            },
+            'expeller': {
+                title: "Solar Expeller Mill",
+                subtitle: "High-Performance Solar Drives for Oil Expeller Mills",
+                image: "./assets/images/solar_expeller.png",
+                overview: "THYRA SOLAR DRIVE is a high-performance drive system specially designed to operate expeller mill motors using solar power. Engineered for efficiency and durability, it ensures smooth and reliable motor performance while reducing dependency on conventional electricity. With rising energy costs and increasing demand for eco-friendly operations, THYRA SOLAR DRIVE enables expeller mills to run efficiently on solar energy, helping businesses achieve long-term savings while maintaining consistent production output.",
+                benefits: [
+                    { title: "Direct Solar Operation", desc: "Operates expeller mill motors directly through solar power without grid dependency." },
+                    { title: "Stable Sunlight Performance", desc: "Reliable and consistent performance under varying sunlight conditions." },
+                    { title: "Industrial-Grade Durability", desc: "Heavy-duty design for long operational life in demanding agro-industrial environments." },
+                    { title: "Multi-Capacity Support", desc: "Compatible with multiple motor capacities for flexible deployment across different setups." }
+                ],
+                apps: ["Oil expeller mills (groundnut, mustard, sesame, etc.)", "Agro-processing industries", "Rural and semi-urban production units", "Small and medium-scale industrial setups"]
+            },
+            'cold-storage': {
+                title: "Solar Cold Storage",
+                subtitle: "Solar-Powered Compressor Drives for Cold Storage Facilities",
+                image: "./assets/images/solar_cold_storage.png",
+                overview: "THYRA SOLAR DRIVE is a high-performance drive system designed to efficiently operate compressor motors in cold storage facilities using solar power. Engineered for reliability and precision, it ensures continuous and stable performance—critical for temperature-sensitive storage applications. Cold storage operations require uninterrupted power for compressors; THYRA SOLAR DRIVE enables seamless utilization of solar energy while significantly reducing electricity costs.",
+                benefits: [
+                    { title: "Solar Compressor Operation", desc: "Efficiently runs compressor motors using solar power for continuous, uninterrupted cooling." },
+                    { title: "Consistent Cooling Performance", desc: "Stable and reliable operation critical for maintaining precise temperatures." },
+                    { title: "Grid & Diesel Independence", desc: "Reduces dependency on grid electricity and diesel generators, lowering costs." },
+                    { title: "Heavy-Duty Industrial Design", desc: "Robust construction with low maintenance requirements for long service life." }
+                ],
+                apps: ["Cold storage warehouses", "Food and agricultural storage units", "Dairy and pharmaceutical storage", "Refrigeration systems in rural and semi-urban areas"]
             },
             'compressor': {
                 title: "Air Compressor Automation",
