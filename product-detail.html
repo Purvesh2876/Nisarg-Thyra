@@ -299,14 +299,40 @@
         @media (max-width: 900px) {
             .product-container {
                 flex-direction: column;
-            }
-
-            .prod-header-section {
-                flex-direction: column;
+                padding: 30px 5%;
+                gap: 30px;
             }
 
             .prod-sidebar {
                 width: 100%;
+                min-width: unset;
+                position: static;
+            }
+
+            .prod-header-section {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .prod-image-box {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .prod-summary h1 {
+                font-size: 1.6rem;
+            }
+
+            .doc-buttons {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .doc-btn {
+                flex: 1 1 auto;
+                justify-content: center;
+                font-size: 0.9rem;
+                padding: 10px 14px;
             }
         }
     </style>
@@ -510,7 +536,7 @@
             'ip65': {
                 name: "IP65 Solar Pump Controller",
                 category: "Solar Solutions",
-                image: "./assets/images/ms10image.png", // add image in assets
+                image: "./assets/images/solarpump.png", // add image in assets
                 desc: "THYRA IP65 Solar Pump Controller is a high-efficiency outdoor-rated solar drive solution designed for harsh environmental conditions. It integrates advanced MPPT technology, smart protection features, and dual power compatibility for agricultural and water pumping applications.",
                 features: [
                     "IP65 Protection – Dust & Water Resistant",
